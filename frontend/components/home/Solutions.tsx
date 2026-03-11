@@ -1,0 +1,123 @@
+import type { LucideIcon } from "lucide-react";
+import { GitBranchPlus, Lightbulb, Radar, Users } from "lucide-react";
+
+type SolutionCard = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
+
+const SOLUTION_CARDS: SolutionCard[] = [
+  {
+    eyebrow: "Mission Architecture",
+    title: "Build and brief faster",
+    description:
+      "Capture objectives, constraints, owners, and timing in one planning board before execution splinters across channels.",
+    icon: Radar,
+  },
+  {
+    eyebrow: "Scenario Simulation",
+    title: "Model the whole operation",
+    description:
+      "Compare aggressive, constrained, and fallback branches inside the same mission picture while change is still cheap.",
+    icon: GitBranchPlus,
+  },
+  {
+    eyebrow: "Team Alignment",
+    title: "Keep every role aligned",
+    description:
+      "Give planners, operators, and leadership the same live command view instead of fragmented updates and recreated context.",
+    icon: Users,
+  },
+];
+
+export default function Solutions() {
+  return (
+    <section
+      id="solutions"
+      aria-labelledby="solutions-title"
+      className="container mx-auto scroll-mt-32 px-5"
+    >
+      <div className="relative isolate">
+        <div className="border-border bg-gradient shadow-text/25 relative rounded-[48px] border bg-linear-to-br p-6 shadow-inner lg:p-8">
+          <div className="pointer-events-none absolute inset-0 rounded-[48px] bg-[radial-gradient(circle_at_top_left,rgba(255,157,79,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(112,82,90,0.12),transparent_30%)]" />
+          <div className="pointer-events-none absolute inset-0 rounded-[48px] bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-size-[52px_52px] opacity-35" />
+
+          <div className="relative z-10">
+            <div className="flex flex-col-reverse gap-y-8 lg:flex-row lg:justify-between">
+              <div className="max-w-2xl space-y-6">
+                <div className="border-border bg-foreground text-text-muted shadow-text/25 hidden items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-medium shadow-inner backdrop-blur-sm lg:inline-flex">
+                  <Lightbulb
+                    fill="#f7c178"
+                    className="h-5 w-5 text-[#f7c178]"
+                  />
+                  <span>Custom Solutions</span>
+                </div>
+
+                <div className="flex flex-col items-center space-y-5 max-lg:justify-center max-lg:text-center">
+                  <h2
+                    id="solutions-title"
+                    className="text-text max-w-md text-5xl font-semibold tracking-tight text-pretty lg:leading-[0.95] xl:max-w-xl xl:text-6xl"
+                  >
+                    Need custom solutions for complex operations?
+                  </h2>
+                  <p className="text-text-muted max-w-md text-lg xl:max-w-xl xl:text-xl xl:leading-8">
+                    Tactica combines mission framing, branch simulation, and
+                    live alignment in one control layer so teams can move with
+                    the same picture under pressure.
+                  </p>
+                </div>
+
+                <div className="flex max-lg:justify-center">
+                  <a
+                    href="#pricing"
+                    className="group text-text-muted hover:text-text hover:bg-secondary bg-foreground border-border hover:shadow-text/30 shadow-text/20 mt-3 inline-flex items-center gap-3 rounded-full border px-8 py-4 text-lg font-medium shadow-inner transition-all duration-200 active:scale-[0.975]"
+                  >
+                    Explore pricing
+                  </a>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <div className="flex justify-center lg:hidden">
+                  <div className="border-border bg-foreground text-text-muted shadow-text/25 mb-3 inline-flex w-fit items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-medium shadow-inner backdrop-blur-sm">
+                    <Lightbulb
+                      fill="#f7c178"
+                      className="h-5 w-5 text-[#f7c178]"
+                    />
+                    <span>Custom Solutions</span>
+                  </div>
+                </div>
+                {SOLUTION_CARDS.map((card) => {
+                  const Icon = card.icon;
+
+                  return (
+                    <article
+                      key={card.title}
+                      className="shadow-text/25 bg-foreground border-border relative flex flex-col overflow-hidden rounded-4xl border bg-[linear-gradient(120deg,rgba(255,255,255,0.025),rgba(255,255,255,0.1))] p-6 shadow-inner"
+                    >
+                      <div className="relative z-10 flex h-full flex-col space-y-2">
+                        <div className="flex items-start justify-between gap-4">
+                          <h3 className="text-text max-w-xs text-3xl font-semibold tracking-tight text-balance">
+                            {card.title}
+                          </h3>
+                          <div className="border-border bg-foreground shadow-text/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border shadow-inner">
+                            <Icon className="text-text-muted h-5 w-5" />
+                          </div>
+                        </div>
+
+                        <p className="text-text-muted max-w-xs leading-5 text-pretty">
+                          {card.description}
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

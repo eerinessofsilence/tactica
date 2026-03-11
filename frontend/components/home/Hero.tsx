@@ -1,14 +1,18 @@
 import Grainient from "../ui/Grainient";
+import { useTheme } from "../../src/theme";
 
 export default function Hero() {
+  const { theme } = useTheme();
+  const isLightTheme = theme === "light";
+
   return (
     <section className="relative isolate min-h-screen overflow-hidden">
       <Grainient
-        color1="#222222"
-        color2="#444444"
-        color3="#000000"
-        timeSpeed={0.25}
-        colorBalance={0.25}
+        color1={isLightTheme ? "#888888" : "#222222"}
+        color2={isLightTheme ? "#777777" : "#333333"}
+        color3={isLightTheme ? "#999999" : "#111111"}
+        timeSpeed={0.5}
+        colorBalance={0.5}
         warpStrength={1}
         warpFrequency={5}
         warpSpeed={2}
@@ -41,7 +45,7 @@ export default function Hero() {
           </p>
           <a
             href="#"
-            className="bg-foreground border-border/50 hover:bg-secondary text-text hover:text-text-muted mt-3 rounded-full border px-6 py-3 text-xl shadow-inner shadow-white/25 transition-all duration-200 hover:shadow-white/20 active:scale-[0.975] md:px-8 md:py-4 md:text-2xl"
+            className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text shadow-text/20 hover:shadow-text/30 mt-3 rounded-full border px-6 py-3 text-xl shadow-inner transition-all duration-200 active:scale-[0.975] md:px-8 md:py-4 md:text-2xl"
           >
             Start Planning
           </a>

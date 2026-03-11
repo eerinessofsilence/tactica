@@ -23,7 +23,7 @@
   --bg: oklch(95% 0 0);
   --bg-light: oklch(100% 0 0);
   --text: oklch(15% 0 0);
-  --text-muted: oklch(40% 0 0);
+  --text-muted: oklch(35% 0 0);
   --border: oklch(40% 0 0);
   --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
   --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));

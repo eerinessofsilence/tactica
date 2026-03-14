@@ -13,9 +13,9 @@ import { useTheme } from "../src/theme";
 
 const COMPANY_LINKS = [
   { label: "Why Tactica", href: "#features" },
-  { label: "How planning stays aligned", href: "#solutions" },
-  { label: "Support and rollout shape", href: "#faq" },
-  { label: "Compare operating tiers", href: "#pricing" },
+  { label: "How the revenue workspace works", href: "#solutions" },
+  { label: "Migration and rollout", href: "#faq" },
+  { label: "Compare revenue plans", href: "#pricing" },
 ];
 
 const NAVIGATION_LINKS = [
@@ -37,7 +37,7 @@ const CONTACT_ITEMS = [
     icon: Phone,
   },
   {
-    label: "Remote-first / distributed teams",
+    label: "Remote-first / distributed revenue teams",
     href: "#faq",
     icon: MapPin,
   },
@@ -50,8 +50,8 @@ const SOCIAL_LINKS = [
 ];
 
 const FOOTER_LINKS = [
-  { label: "Mission framing", href: "#solutions" },
-  { label: "Decision layers", href: "#features" },
+  { label: "Pipeline visibility", href: "#features" },
+  { label: "Account planning", href: "#solutions" },
   { label: "Rollout support", href: "#faq" },
 ];
 
@@ -75,12 +75,13 @@ export default function Footer() {
               id="footer-cta-title"
               className="text-text mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-balance md:text-5xl"
             >
-              Ready to turn planning pressure into one shared mission picture?
+              Ready to run accounts, pipeline, and next steps in one workspace?
             </h2>
 
             <p className="mt-4 max-w-2xl text-base text-balance md:text-lg">
-              Start with a single operation, compare the branches that matter,
-              and carry the same decision context from planning into execution.
+              Replace CRM-plus-spreadsheet drift with one workspace for account
+              context, pipeline reviews, scenario planning, and coordinated
+              execution.
             </p>
 
             <a
@@ -108,8 +109,8 @@ export default function Footer() {
 
               <div className="flex justify-end lg:text-right">
                 <p className="max-w-md text-lg text-pretty">
-                  Tactical planning infrastructure for teams that need alignment
-                  before conditions shift again.
+                  Revenue workspace for teams that need account context, pipeline
+                  visibility, and next-step coordination in one place.
                 </p>
               </div>
             </div>
@@ -227,8 +228,8 @@ export default function Footer() {
 
             <div className="border-border/50 mt-6 flex flex-col gap-4 border-t pt-5 md:flex-row md:items-center md:justify-between">
               <p className="text-text-muted text-sm">
-                © {year} Tactica. Built for product, operations, strategy, and
-                planning teams working under real coordination pressure.
+                © {year} Tactica. Built for revenue teams managing live
+                accounts, pipeline decisions, and cross-functional execution.
               </p>
 
               <div className="flex flex-wrap gap-x-5 gap-y-2">

@@ -15,44 +15,44 @@ const FEATURES: {
   icon: LucideIcon;
 }[] = [
   {
-    eyebrow: "Planning Canvas",
-    title: "Build the operation in one shared visual layer.",
+    eyebrow: "Unified Dashboard",
+    title: "See the live pipeline picture in one dashboard.",
     description:
-      "Organize phases, owners, and dependencies without losing the relationship between strategy and execution.",
-    bullets: ["Multi-step workflows", "Visible dependencies"],
+      "Track accounts, opportunities, owners, and next actions without jumping between CRM records, spreadsheets, and status updates.",
+    bullets: ["Account health", "Pipeline visibility"],
     icon: Layers3,
   },
   {
-    eyebrow: "Branch Logic",
-    title: "Compare alternate paths before the team commits.",
+    eyebrow: "Scenario Logic",
+    title: "Compare next-step scenarios before you commit.",
     description:
-      "Create parallel branches for aggressive, safe, or constrained scenarios and inspect the tradeoffs side by side.",
-    bullets: ["What-if paths", "Faster course correction"],
+      "Create parallel branches for expansion, recovery, or constrained scenarios and inspect the tradeoffs side by side.",
+    bullets: ["What-if branches", "Faster course correction"],
     icon: GitBranch,
   },
   {
     eyebrow: "Decision Memory",
-    title: "Capture why the plan changed, not only that it changed.",
+    title: "Capture why the account plan changed.",
     description:
-      "Keep assumptions, checkpoints, and rationale attached to the operation so context survives pressure and handoffs.",
-    bullets: ["Decision trail", "Review-ready context"],
+      "Keep assumptions, risks, checkpoints, and rationale attached to the record so context survives pressure and handoffs.",
+    bullets: ["Decision trail", "Clear handoffs"],
     icon: ScrollText,
   },
   {
     eyebrow: "Execution Focus",
-    title: "Keep the team locked on the current objective.",
+    title: "Turn pipeline insight into coordinated action.",
     description:
-      "Surface critical milestones, near-term actions, and accountability so execution stays aligned with the original mission.",
+      "Surface critical milestones, near-term actions, and accountability so the team stays aligned on what happens next.",
     bullets: ["Live priorities", "Explicit ownership"],
     icon: Crosshair,
   },
 ];
 
 const CONTROL_NOTES = [
-  "Context moves forward with the plan instead of being rebuilt.",
-  "Review rituals and branch logic stay attached to the same mission picture.",
-  "Execution stays grounded in intent, not only in task status.",
-  "Assumptions remain visible when the operation shifts under pressure.",
+  "Dashboard metrics stay tied to real account and pipeline context.",
+  "Planning, CRM activity, and reviews live in the same workflow.",
+  "Execution moves forward with the same decision trail the team used earlier.",
+  "Scenario changes stay visible when ownership or risk shifts under pressure.",
 ];
 
 export default function Features() {
@@ -70,13 +70,12 @@ export default function Features() {
                 id="features-title"
                 className="text-text max-w-xl text-4xl font-bold text-balance italic md:text-5xl"
               >
-                A structured dossier of what the product actually helps teams
-                do.
+                What revenue teams can actually run inside Tactica.
               </h2>
               <p className="max-w-xl text-lg text-pretty md:text-xl">
-                Not another generic productivity stack. These are the core
-                system capabilities that keep planning, comparison, and
-                execution aligned.
+                Not just another CRM and not just another dashboard. These are
+                the core workflows revenue teams use to inspect pipeline, plan
+                the next move, and coordinate execution.
               </p>
             </div>
           </div>
@@ -86,7 +85,7 @@ export default function Features() {
               <div className="space-y-2">
                 <p className="text-text text-xl font-semibold">Control notes</p>
                 <p className="max-w-sm text-sm md:text-base">
-                  The value comes from keeping every planning layer connected.
+                  The value comes from keeping the operating picture connected.
                 </p>
               </div>
               <a

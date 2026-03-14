@@ -11,24 +11,24 @@ type SolutionCard = {
 
 const SOLUTION_CARDS: SolutionCard[] = [
   {
-    eyebrow: "Mission Architecture",
-    title: "Build and brief faster",
+    eyebrow: "CRM Foundation",
+    title: "Keep every account in view",
     description:
-      "Capture objectives, constraints, owners, and timing in one planning board before execution splinters across channels.",
+      "Track accounts, owners, open work, and pipeline movement in one shared workspace instead of splitting context across CRM tables and status docs.",
     icon: Radar,
   },
   {
-    eyebrow: "Scenario Simulation",
-    title: "Model the whole operation",
+    eyebrow: "Scenario Planning",
+    title: "Plan the next move before the team commits",
     description:
-      "Compare aggressive, constrained, and fallback branches inside the same mission picture while change is still cheap.",
+      "Compare expansion, recovery, and fallback paths around the same account or initiative while decisions are still cheap to change.",
     icon: GitBranchPlus,
   },
   {
-    eyebrow: "Team Alignment",
-    title: "Keep every role aligned",
+    eyebrow: "Shared Execution",
+    title: "Align execution across the revenue team",
     description:
-      "Give planners, operators, and leadership the same live command view instead of fragmented updates and recreated context.",
+      "Give sales, ops, customer, and leadership the same live operating view instead of fragmented updates and recreated context.",
     icon: Users,
   },
 ];
@@ -55,20 +55,24 @@ export default function Solutions() {
                     fill="#f7c178"
                     className="h-5 w-5 text-[#f7c178]"
                   />
-                  <span>Custom Solutions</span>
+                  <span>Revenue Workspace</span>
                 </div>
 
-                <div className="flex flex-col items-center space-y-5 max-lg:justify-center max-lg:text-center">
+                <div className="flex flex-col items-center space-y-5 max-lg:justify-center max-lg:text-center lg:items-start">
                   <h2
                     id="solutions-title"
-                    className="text-text max-w-md text-5xl font-semibold tracking-tight text-pretty lg:leading-[0.95] xl:max-w-xl xl:text-6xl"
+                    className="text-text max-w-md text-4xl font-semibold tracking-tight text-pretty md:text-5xl lg:leading-[0.95] xl:max-w-lg xl:text-6xl"
                   >
-                    Need custom solutions for complex operations?
+                    One workspace for accounts, pipeline, and next steps.
                   </h2>
-                  <p className="text-text-muted max-w-md text-lg xl:max-w-xl xl:text-xl xl:leading-8">
-                    Tactica combines mission framing, branch simulation, and
-                    live alignment in one control layer so teams can move with
-                    the same picture under pressure.
+                  <p className="max-w-lg:max-w-md text-lg text-balance lg:max-w-xs xl:max-w-xl xl:text-xl xl:leading-8">
+                    Tactica is an operational CRM and revenue planning workspace
+                    for teams managing complex accounts and live pipeline
+                    decisions. It combines dashboard visibility, account
+                    context, scenario planning, and execution tracking in one
+                    system, so sales, RevOps, and customer-facing teams can make
+                    better decisions, stay aligned on next steps, and move
+                    revenue forward without rebuilding context across tools.
                   </p>
                 </div>
 
@@ -88,7 +92,7 @@ export default function Solutions() {
                       fill="#f7c178"
                       className="h-5 w-5 text-[#f7c178]"
                     />
-                    <span>Custom Solutions</span>
+                    <span>Revenue Workspace</span>
                   </div>
                 </div>
                 {SOLUTION_CARDS.map((card) => {
@@ -105,7 +109,7 @@ export default function Solutions() {
                     >
                       <div className="relative z-10 flex h-full flex-col space-y-2">
                         <div className="flex items-start justify-between gap-4">
-                          <h3 className="text-text max-w-xs text-3xl font-semibold tracking-tight text-balance">
+                          <h3 className="text-text max-w-md text-3xl font-semibold tracking-tight text-balance">
                             {card.title}
                           </h3>
                           <div className="border-border bg-foreground shadow-text/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border shadow-inner">
@@ -113,7 +117,7 @@ export default function Solutions() {
                           </div>
                         </div>
 
-                        <p className="text-text-muted max-w-xs leading-5 text-pretty">
+                        <p className="text-text-muted max-w-md leading-5 text-pretty">
                           {card.description}
                         </p>
                       </div>

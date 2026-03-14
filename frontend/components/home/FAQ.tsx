@@ -5,32 +5,37 @@ const FAQ_ITEMS = [
   {
     question: "Who is Tactica built for?",
     answer:
-      "Tactica is built for teams that need to plan, compare scenarios, and keep execution aligned across multiple people. It fits product, operations, strategy, and cross-functional planning environments.",
+      "Tactica is built for revenue teams that need one place to manage accounts, inspect pipeline health, decide next steps, and coordinate execution. It fits sales, RevOps, customer-facing, and cross-functional teams working around live revenue decisions.",
+  },
+  {
+    question: "Is this meant to replace our CRM?",
+    answer:
+      "It is meant to replace the messy combination of CRM views, spreadsheets, and status docs that teams rely on to actually run pipeline reviews and account decisions. The product should feel like the operating layer where context, planning, and execution live together.",
+  },
+  {
+    question: "How is this different from a standard CRM dashboard?",
+    answer:
+      "A standard CRM dashboard shows pipeline state. Tactica is designed to help the team decide what to do next with that information. It combines visibility, account context, scenario planning, decision memory, and coordinated follow-through in one workspace.",
   },
   {
     question: "Do we need a large team to get value from it?",
     answer:
-      "No. Smaller teams can use Tactica to turn informal planning into a clearer operating system. Larger organizations benefit when multiple teams need the same mission view, decision history, and branching logic.",
+      "No. Smaller teams can use Tactica to replace loose CRM habits, spreadsheets, and status updates with a clearer operating rhythm. Larger organizations benefit when multiple teams need the same account picture, decision history, and branching logic.",
   },
   {
-    question: "How is this different from a generic project tracker?",
+    question: "Can we start with one revenue workflow and expand later?",
     answer:
-      "A generic tracker records tasks after direction is chosen. Tactica is built earlier in the cycle: it helps teams shape the plan, test alternate paths, document intent, and then carry that context into execution.",
+      "Yes. Most teams start with a shared account or pipeline workflow, then expand into deeper inspection rituals, scenario planning, and broader cross-team coordination as adoption grows.",
   },
   {
-    question: "Can we start with one workflow and expand later?",
+    question: "What does onboarding and migration usually look like?",
     answer:
-      "Yes. The product is designed to start with a single mission or planning workflow and scale into deeper branching, review rituals, and broader cross-team coordination as adoption grows.",
-  },
-  {
-    question: "What does onboarding usually look like?",
-    answer:
-      "Starter and Ops can begin quickly with a small planning structure and a first review cadence. Command adds guided rollout, operating support, and coordination for more complex team environments.",
+      "Starter and Ops can begin with a core workspace setup, account structure, and first review cadence. Command adds guided rollout, migration support, and coordination design for more complex revenue environments.",
   },
   {
     question: "How do pricing and support scale?",
     answer:
-      "Starter and Ops are seat-based monthly plans. Command is scoped annually for organizations that need more governance, rollout help, and a tighter operating model across larger teams.",
+      "Starter and Ops are seat-based monthly plans. Command is scoped annually for organizations that need more governance, rollout help, and a tighter operating model across larger account portfolios and teams.",
   },
 ];
 
@@ -50,19 +55,19 @@ export default function FAQ() {
               id="faq-title"
               className="text-text max-w-xl text-4xl font-bold text-balance italic md:text-5xl"
             >
-              The practical questions that show up before teams commit.
+              The practical questions revenue teams ask before they switch.
             </h2>
             <p className="mt-4 max-w-xl text-lg text-balance md:text-xl">
-              Most evaluation friction is about adoption, clarity, rollout
-              shape, and whether the system still holds when conditions change
-              fast.
+              Most evaluation friction is about CRM replacement, migration,
+              adoption, and whether the workspace still helps when deals,
+              owners, and priorities shift fast.
             </p>
 
             <a
               href="#pricing"
               className="border-border bg-foreground hover:bg-secondary shadow-text/20 hover:text-text mt-6 inline-flex items-center gap-2 rounded-full border px-6 py-3 shadow-inner transition-colors duration-200"
             >
-              Compare plans
+              Compare revenue plans
               <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>

@@ -23,15 +23,15 @@ const PLANS: {
     price: "$29",
     period: "/month",
     description:
-      "For small teams turning rough strategic thinking into a structured plan.",
+      "For early revenue teams replacing spreadsheet-driven pipeline reviews with one shared workspace.",
     highlight: "Best for first operating playbooks",
     cta: "Start with Starter",
     icon: Radar,
     features: [
-      "Shared planning workspace",
-      "Core mission mapping",
-      "Scenario branches",
-      "Weekly review cadence",
+      "Shared account and pipeline dashboard",
+      "Core CRM and opportunity tracking",
+      "Next-step scenario planning",
+      "Weekly pipeline review cadence",
     ],
   },
   {
@@ -39,17 +39,17 @@ const PLANS: {
     price: "$79",
     period: "/month",
     description:
-      "For teams that actively simulate options, coordinate execution, and review decisions together.",
+      "For revenue teams actively coordinating pipeline risk, account plans, and cross-functional follow-through.",
     highlight: "Most teams running live operations start here",
     cta: "Choose Ops",
     icon: Crosshair,
     featured: true,
     features: [
       "Everything in Starter",
-      "Advanced branching workflows",
+      "Advanced scenario workflows",
       "Decision history and checkpoints",
-      "Priority views for execution",
-      "Team review sessions",
+      "Priority views for handoffs and execution",
+      "Team review and inspection sessions",
     ],
   },
   {
@@ -57,38 +57,42 @@ const PLANS: {
     price: "Custom",
     period: "annual",
     description:
-      "For organizations aligning multiple teams, higher control requirements, and tailored rollout support.",
+      "For organizations running strategic accounts across multiple teams, regions, and operating layers.",
     highlight: "For multi-team planning environments",
     cta: "Talk to sales",
     icon: ShieldCheck,
     features: [
       "Everything in Ops",
-      "Custom onboarding",
-      "Dedicated operating support",
+      "Custom onboarding and migration",
+      "Dedicated rollout and operating support",
       "Enterprise governance controls",
-      "Scaled rollout for larger teams",
+      "Scaled adoption across larger revenue teams",
     ],
   },
 ];
 
 const BUY_SIGNALS = [
-  "Start lean, then move into deeper simulation and control when the team is ready.",
-  "No separate tool tax for planning, comparison, and review.",
-  "Enterprise rollout is priced around complexity, not inflated theater.",
+  "Replace CRM-plus-spreadsheet drift with one operating layer for pipeline reviews and next-step planning.",
+  "Keep visibility, account context, and execution reviews in the same workspace.",
+  "Scale into governance and rollout support only when coordination complexity actually demands it.",
 ];
 
 const COMPARISON_ROWS = [
   {
     label: "Best fit",
     values: [
-      "Small planning teams",
-      "Live cross-functional operations",
-      "Scaled multi-team environments",
+      "Founder-led or early revenue teams",
+      "Growing teams running live pipeline reviews",
+      "Strategic account organizations across multiple teams",
     ],
   },
   {
-    label: "Branch depth",
-    values: ["Core", "Advanced", "Advanced + custom governance"],
+    label: "Workflow depth",
+    values: [
+      "Core CRM + workspace views",
+      "Scenario planning + execution coordination",
+      "Governed workflows + custom rollout",
+    ],
   },
   {
     label: "Support model",
@@ -112,13 +116,12 @@ export default function Pricing() {
               id="pricing-title"
               className="text-text mt-4 text-4xl font-bold text-balance md:text-5xl"
             >
-              A pricing model that matches operational maturity, not template
-              SaaS tiers.
+              Choose the revenue workspace your team needs now.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-balance md:text-xl">
-              Pick the level of structure your team needs now, then expand into
-              deeper branching, review, and rollout support without rebuilding
-              the system.
+              Start with shared account visibility and pipeline discipline, then
+              add deeper planning, inspection rituals, and rollout support as
+              account complexity grows.
             </p>
           </div>
 

@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { GitBranchPlus, Lightbulb, Radar, Users } from "lucide-react";
+import { useTheme } from "../../src/theme";
 
 type SolutionCard = {
   eyebrow: string;
@@ -33,6 +34,8 @@ const SOLUTION_CARDS: SolutionCard[] = [
 ];
 
 export default function Solutions() {
+  const { theme } = useTheme();
+  const isLightTheme = theme === "light";
   return (
     <section
       id="solutions"
@@ -94,7 +97,11 @@ export default function Solutions() {
                   return (
                     <article
                       key={card.title}
-                      className="shadow-text/25 bg-foreground border-border relative flex flex-col overflow-hidden rounded-4xl border bg-[linear-gradient(120deg,rgba(255,255,255,0.025),rgba(255,255,255,0.1))] p-6 shadow-inner"
+                      className={`shadow-text/25 bg-foreground border-border relative flex flex-col overflow-hidden rounded-4xl border p-6 shadow-inner ${
+                        isLightTheme
+                          ? "bg-[linear-gradient(120deg,rgba(0,0,0,0.025),rgba(0,0,0,0.25))]"
+                          : "bg-[linear-gradient(120deg,rgba(255,255,255,0.025),rgba(255,255,255,0.1))]"
+                      }`}
                     >
                       <div className="relative z-10 flex h-full flex-col space-y-2">
                         <div className="flex items-start justify-between gap-4">

@@ -53,7 +53,6 @@ const CONTROL_NOTES = [
   "Review rituals and branch logic stay attached to the same mission picture.",
   "Execution stays grounded in intent, not only in task status.",
   "Assumptions remain visible when the operation shifts under pressure.",
-  "Teams can re-enter the plan midstream without losing the operating logic.",
 ];
 
 export default function Features() {
@@ -61,7 +60,7 @@ export default function Features() {
     <section
       id="features"
       aria-labelledby="features-title"
-      className="container mx-auto px-10"
+      className="container mx-auto px-5"
     >
       <div className="grid gap-8 xl:grid-cols-[0.66fr_1.34fr]">
         <div className="space-y-8 lg:space-y-16 xl:pt-4">
@@ -95,7 +94,7 @@ export default function Features() {
                 className="border-border group bg-foreground text-text hover:bg-secondary shadow-text/20 hover:shadow-text/30 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border shadow-inner transition-colors duration-200"
                 aria-label="See solutions"
               >
-                <ArrowUpRight className="group h-6 w-6 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="group group-hover:text-text h-6 w-6 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
 
@@ -112,7 +111,7 @@ export default function Features() {
           </div>
         </div>
 
-        <div className="border-border bg-foreground shadow-text/20 overflow-hidden rounded-[42px] border shadow-inner">
+        <div className="border-border bg-foreground shadow-text/20 h-fit overflow-hidden rounded-[42px] border shadow-inner">
           {FEATURES.map((feature, index) => {
             const Icon = feature.icon;
             const featureNumber = index + 1;
@@ -120,7 +119,7 @@ export default function Features() {
             return (
               <article
                 key={feature.title}
-                className={`grid gap-5 px-5 py-6 md:grid-cols-[72px_1fr_auto] ${
+                className={`grid h-fit gap-5 p-5 md:grid-cols-[72px_1fr_auto] ${
                   index < FEATURES.length - 1 ? "border-border border-b" : ""
                 } ${index % 2 === 0 ? "bg-secondary/25" : "bg-foreground"}`}
               >
@@ -136,7 +135,7 @@ export default function Features() {
                 </div>
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <h3 className="text-text text-2xl font-semibold text-balance md:text-3xl">
+                    <h3 className="text-text max-w-lg text-2xl font-semibold text-balance md:text-3xl">
                       {feature.title}
                     </h3>
                     <p className="max-w-2xl text-sm text-balance md:text-base">

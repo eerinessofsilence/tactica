@@ -2,6 +2,7 @@ import Hero from "../../components/home/Hero";
 import Solutions from "../../components/home/Solutions";
 import Features from "../../components/home/Features";
 import Pricing from "../../components/home/Pricing";
+import FAQ from "../../components/home/FAQ";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Solutions />
       <Features />
       <Pricing />
+      <FAQ />
     </main>
   );
 }

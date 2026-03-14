@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
-import { useTheme } from "../src/theme";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   {
@@ -24,8 +23,6 @@ const NAV_LINKS = [
 export default function Header() {
   const mobileMenuId = "mobile-menu";
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-  const isLightTheme = theme === "light";
   const handleMobileMenuToggle = () =>
     setMobileMenuIsOpen((prevState) => !prevState);
   const handleMobileMenuLinkClick = () => setMobileMenuIsOpen(false);
@@ -54,35 +51,6 @@ export default function Header() {
           ))}
         </ul>
         <div className="flex items-center gap-2 md:gap-4">
-          <button
-            type="button"
-            role="switch"
-            aria-checked={isLightTheme}
-            aria-label={
-              isLightTheme ? "Switch to dark theme" : "Switch to light theme"
-            }
-            onClick={toggleTheme}
-            className="border-border/50 bg-foreground shadow-text/20 relative inline-flex h-10 w-20 shrink-0 cursor-pointer items-center rounded-full border px-1.5 shadow-inner transition-all duration-200 active:scale-[0.97]"
-          >
-            <span className="pointer-events-none relative z-10 grid w-full grid-cols-2 place-items-center">
-              <Sun
-                className={`h-4 w-4 transition-colors duration-200 ${
-                  isLightTheme ? "text-text" : "text-text-muted/55"
-                }`}
-              />
-              <Moon
-                className={`h-4 w-4 transition-colors duration-200 ${
-                  isLightTheme ? "text-text-muted" : "text-text"
-                }`}
-              />
-            </span>
-            <span
-              aria-hidden="true"
-              className={`border-border bg-secondary absolute top-0.75 left-1.5 h-8 w-8 rounded-full border shadow-sm transition-transform duration-300 ${
-                isLightTheme ? "translate-x-0" : "translate-x-8.25"
-              }`}
-            />
-          </button>
           <a
             href="#pricing"
             className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text shadow-text/15 hover:shadow-text/20 hidden rounded-full border px-8 py-3 text-xl shadow-inner transition-all duration-200 active:scale-[0.975] lg:inline"

@@ -78,10 +78,10 @@ export default function Solutions() {
 
                 <div className="flex max-lg:justify-center">
                   <a
-                    href="#pricing"
+                    href="/demo"
                     className="group text-text-muted hover:text-text hover:bg-secondary bg-foreground border-border hover:shadow-text/30 shadow-text/20 mt-3 inline-flex items-center gap-3 rounded-full border px-8 py-4 text-lg font-medium shadow-inner transition-all duration-200 active:scale-[0.975]"
                   >
-                    Explore pricing
+                    Open demo workspace
                   </a>
                 </div>
               </div>

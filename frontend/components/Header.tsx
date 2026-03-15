@@ -52,10 +52,10 @@ export default function Header() {
         </ul>
         <div className="flex items-center gap-2 md:gap-4">
           <a
-            href="#pricing"
+            href="/demo"
             className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text shadow-text/15 hover:shadow-text/20 hidden rounded-full border px-8 py-3 text-xl shadow-inner transition-all duration-200 active:scale-[0.975] lg:inline"
           >
-            See pricing
+            See live demo
           </a>
           <button
             type="button"
@@ -100,11 +100,11 @@ export default function Header() {
             })}
           </nav>
           <a
-            href="#pricing"
+            href="/demo"
             onClick={handleMobileMenuLinkClick}
             className="bg-background text-text-muted border-border/50 hover:text-text hover:bg-secondary shadow-text/25 inline-flex items-center justify-center rounded-full border px-5 py-3 text-base font-medium shadow-inner transition-all duration-200 active:scale-[0.975]"
           >
-            See pricing
+            See live demo
           </a>
         </div>
       </div>

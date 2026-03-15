@@ -85,10 +85,10 @@ export default function Footer() {
             </p>
 
             <a
-              href="#pricing"
+              href="/demo"
               className="bg-foreground hover:shadow-text/30 group shadow-text/20 hover:text-text hover:bg-secondary mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold shadow-inner transition-all duration-200 active:scale-[0.975]"
             >
-              Explore pricing
+              Open demo workspace
               <ArrowUpRight className="group h-5 w-5 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>

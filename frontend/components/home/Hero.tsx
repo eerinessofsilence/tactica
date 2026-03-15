@@ -46,10 +46,10 @@ export default function Hero() {
             without switching between CRM, spreadsheets, and status docs.
           </p>
           <a
-            href="#solutions"
+            href="/demo"
             className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text shadow-text/20 hover:shadow-text/30 mt-3 rounded-full border px-6 py-3 text-xl shadow-inner transition-all duration-200 active:scale-[0.975] md:px-8 md:py-4 md:text-2xl"
           >
-            See the workspace
+            See live workspace
           </a>
         </div>
       </div>

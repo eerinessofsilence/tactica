@@ -53,19 +53,18 @@ export default function FAQ() {
           <div>
             <h2
               id="faq-title"
-              className="text-text max-w-xl text-4xl font-bold text-balance italic md:text-5xl"
+              className="text-text max-w-xl text-4xl font-bold text-balance md:text-5xl"
             >
-              The practical questions revenue teams ask before they switch.
+              The questions revenue teams ask before they switch
             </h2>
             <p className="mt-4 max-w-xl text-lg text-balance md:text-xl">
               Most evaluation friction is about CRM replacement, migration,
-              adoption, and whether the workspace still helps when deals,
-              owners, and priorities shift fast.
+              adoption, and whether the workspace still helps when deals, owners
             </p>
 
             <a
               href="#pricing"
-              className="border-border bg-foreground hover:bg-secondary shadow-text/20 hover:text-text mt-6 inline-flex items-center gap-2 rounded-full border px-6 py-3 shadow-inner transition-colors duration-200"
+              className="border-border bg-foreground hover:bg-secondary hover:text-text mt-6 inline-flex items-center gap-2 rounded-full border px-6 py-3 transition-colors duration-200"
             >
               Compare revenue plans
               <ArrowUpRight className="h-4 w-4" />
@@ -73,7 +72,7 @@ export default function FAQ() {
           </div>
         </div>
 
-        <div className="border-border bg-foreground shadow-text/20 h-fit overflow-hidden rounded-[2.5rem] border shadow-inner">
+        <div className="border-border bg-foreground h-fit overflow-hidden rounded-4xl border">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;
 
@@ -112,7 +111,7 @@ export default function FAQ() {
                     </span>
                   </span>
 
-                  <span className="border-border bg-foreground shadow-text/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border shadow-inner">
+                  <span className="border-border/50 bg-foreground flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border">
                     <ChevronDown
                       className={`text-text h-5 w-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     />

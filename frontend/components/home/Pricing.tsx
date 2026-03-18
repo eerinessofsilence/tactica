@@ -72,9 +72,9 @@ const PLANS: {
 ];
 
 const BUY_SIGNALS = [
-  "Replace CRM-plus-spreadsheet drift with one operating layer for pipeline reviews and next-step planning.",
-  "Keep visibility, account context, and execution reviews in the same workspace.",
-  "Scale into governance and rollout support only when coordination complexity actually demands it.",
+  "Replace CRM-spreadsheet drift with one operating layer for next-step planning.",
+  "Keep account context and execution reviews in the same workspace.",
+  "Scale into rollout support only when complexity actually demands it.",
 ];
 
 const COMPARISON_ROWS = [
@@ -107,10 +107,10 @@ export default function Pricing() {
       aria-labelledby="pricing-title"
       className="container mx-auto px-5"
     >
-      <div className="border-border/50 bg-foreground relative overflow-hidden rounded-[2.5rem] border p-6 shadow-inner shadow-white/15 lg:p-8">
+      <div className="border-border/50 bg-foreground relative overflow-hidden rounded-[2.5rem] border p-6 shadow-white/15 lg:p-8">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(255,255,255,0.12),transparent_38%)]" />
 
-        <div className="relative z-10 space-y-12">
+        <div className="relative z-10 space-y-16">
           <div className="mx-auto max-w-3xl text-center">
             <h2
               id="pricing-title"
@@ -129,10 +129,10 @@ export default function Pricing() {
             {BUY_SIGNALS.map((signal) => (
               <div
                 key={signal}
-                className="border-border bg-foreground shadow-text/20 flex max-w-sm items-center gap-3 rounded-full border px-4 py-3 shadow-inner"
+                className="border-border bg-foreground flex max-w-sm items-center gap-3 rounded-full border px-6 py-3"
               >
-                <Check className="text-text h-6 w-6 shrink-0" />
-                <p className="text-sm text-balance">{signal}</p>
+                <Check className="h-6 w-6 shrink-0 text-[#13C750]" />
+                <p className="max-w-[85%] text-sm text-pretty">{signal}</p>
               </div>
             ))}
           </div>
@@ -145,11 +145,11 @@ export default function Pricing() {
                   className={`relative overflow-hidden rounded-4xl border p-5 ${
                     plan.featured
                       ? "border-border bg-foreground shadow-[0_18px_60px_rgba(0,0,0,0.35)] lg:-mt-6"
-                      : "border-border/50 bg-foreground shadow-inner shadow-white/20"
+                      : "border-border/50 bg-foreground shadow-white/20"
                   }`}
                 >
                   {plan.featured ? (
-                    <div className="shadow-text/20 pointer-events-none absolute inset-0 shadow-inner" />
+                    <div className="pointer-events-none absolute inset-0" />
                   ) : null}
                   <div
                     className={`pointer-events-none absolute inset-x-0 top-0 h-28 ${
@@ -161,11 +161,9 @@ export default function Pricing() {
 
                   <div className="relative z-10 flex h-full flex-col">
                     <div className="flex items-center justify-between gap-4">
-                      <p className="text-text text-2xl font-semibold">
-                        {plan.name}
-                      </p>
+                      <p className="text-text-muted text-2xl">{plan.name}</p>
                       {plan.featured ? (
-                        <span className="bg-text text-background shadow-background/25 rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase shadow-inner">
+                        <span className="text-background shadow-background/25 rounded-full bg-[#FF8101] px-3 py-1 text-xs font-semibold tracking-wide uppercase">
                           Recommended
                         </span>
                       ) : null}
@@ -189,9 +187,9 @@ export default function Pricing() {
                       {plan.features.map((feature) => (
                         <li
                           key={feature}
-                          className="border-border bg-foreground text-text shadow-text/20 flex items-center gap-3 rounded-full border px-5 py-2.5 text-sm shadow-inner"
+                          className="border-border/20 bg-foreground text-text flex items-center gap-3 rounded-full border px-5 py-2.5 text-sm"
                         >
-                          <Check className="h-4 w-4 shrink-0" />
+                          <Check className="h-4 w-4 shrink-0 text-[#13C750]" />
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -201,8 +199,8 @@ export default function Pricing() {
                       href="#faq"
                       className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-all duration-200 active:scale-[0.975] ${
                         plan.featured
-                          ? "shadow-text/20 hover:shadow-text/30 border-border bg-secondary text-text hover:bg-foreground hover:text-text-muted shadow-inner"
-                          : "border-border hover:shadow-text/30 shadow-text/20 hover:text-text bg-foreground hover:bg-secondary shadow-inner"
+                          ? "border-border bg-secondary text-text hover:bg-foreground hover:text-text-muted"
+                          : "border-border hover:text-text bg-foreground hover:bg-secondary"
                       }`}
                     >
                       {plan.cta}
@@ -214,10 +212,10 @@ export default function Pricing() {
             })}
           </div>
 
-          <div className="shadow-text/20 border-border bg-foreground mt-8 overflow-hidden rounded-4xl border shadow-inner">
+          <div className="border-border/25 bg-foreground mt-8 overflow-hidden rounded-4xl border">
             <div className="overflow-x-auto overscroll-contain">
               <div className="min-w-180">
-                <div className="text-text-muted/75 border-border grid grid-cols-[160px_repeat(3,minmax(160px,1fr))] border-b px-5 py-4 text-sm md:grid-cols-[1.1fr_1fr_1fr_1fr] md:px-6">
+                <div className="text-text-muted/75 border-border/25 grid grid-cols-[160px_repeat(3,minmax(160px,1fr))] border-b px-5 py-4 text-sm md:grid-cols-[1.1fr_1fr_1fr_1fr] md:px-6">
                   <p className="font-medium tracking-widest uppercase">
                     Compare
                   </p>
@@ -236,7 +234,7 @@ export default function Pricing() {
                     key={row.label}
                     className={`grid grid-cols-[160px_repeat(3,minmax(160px,1fr))] gap-4 px-5 py-4 md:grid-cols-[1.1fr_1fr_1fr_1fr] md:px-6 ${
                       index < COMPARISON_ROWS.length - 1
-                        ? "border-border border-b"
+                        ? "border-border/25 border-b"
                         : ""
                     }`}
                   >

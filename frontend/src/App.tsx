@@ -6,16 +6,14 @@ import Layout from "../components/Layout";
 export default function App() {
   return (
     <Routes>
-      <Route path="/">
-        <Route
-          index
-          element={
-            <Layout>
-              <Home />
-            </Layout>
-          }
-        />
-      </Route>
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <Home />
+          </Layout>
+        }
+      />
       <Route path="/demo" element={<Demo />} />
     </Routes>
   );

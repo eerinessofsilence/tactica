@@ -11,23 +11,23 @@ type SolutionCard = {
 const SOLUTION_CARDS: SolutionCard[] = [
   {
     eyebrow: "CRM Foundation",
-    title: "Keep every account in view",
+    title: "Keep pipeline and account context in one view",
     description:
-      "Track accounts, owners, open work, and pipeline movement in one shared workspace instead of splitting context across CRM tables and status docs.",
+      "Track accounts, owners, risk, and open work in one shared workspace instead of stitching decisions together from CRM tabs and status docs.",
     icon: Radar,
   },
   {
     eyebrow: "Scenario Planning",
-    title: "Plan the next move before the team commits",
+    title: "Compare the next move before the team commits",
     description:
-      "Compare expansion, recovery, and fallback paths around the same account or initiative while decisions are still cheap to change.",
+      "Model recovery, expansion, and fallback paths around the same account while the team can still weigh tradeoffs and change course.",
     icon: GitBranchPlus,
   },
   {
     eyebrow: "Shared Execution",
-    title: "Align execution across the revenue team",
+    title: "Coordinate follow-through across the team",
     description:
-      "Give sales, ops, customer, and leadership the same live operating view instead of fragmented updates and recreated context.",
+      "Give sales, RevOps, customer, and leadership the same live plan so ownership, timing, and handoffs stay visible after the decision.",
     icon: Users,
   },
 ];
@@ -60,12 +60,12 @@ export default function Solutions() {
                     id="solutions-title"
                     className="text-text max-w-md text-3xl font-semibold tracking-tight text-pretty md:text-4xl lg:leading-[0.95] xl:max-w-lg xl:text-5xl"
                   >
-                    One workspace for accounts, pipeline, and next steps.
+                    One workspace for pipeline reviews, account context, and next actions.
                   </h2>
                   <p className="max-w-lg:max-w-md text-lg text-balance lg:max-w-xs xl:max-w-xl xl:text-xl xl:leading-8">
-                    Tactica is an operational CRM and revenue planning workspace
-                    for teams managing complex accounts and live pipeline
-                    decisions.
+                    Tactica gives revenue teams a shared operating layer for
+                    live accounts: pipeline visibility, scenario planning, and
+                    execution in one place.
                   </p>
                 </div>
 

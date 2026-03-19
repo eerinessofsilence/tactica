@@ -10,34 +10,34 @@ const FEATURES: {
 }[] = [
   {
     eyebrow: "Unified Dashboard",
-    title: "See the live pipeline picture in one dashboard",
+    title: "See pipeline health and account focus in one dashboard",
     description:
-      "Track accounts, opportunities, owners, and next actions without jumping between CRM records, spreadsheets, and status updates",
-    bullets: ["Account health", "Pipeline visibility"],
+      "Track coverage, risk, owners, and next actions without jumping across CRM records, spreadsheets, and status threads",
+    bullets: ["Pipeline health", "Account focus"],
     icon: Layers3,
   },
   {
     eyebrow: "Scenario Logic",
-    title: "Compare next-step scenarios before you commit",
+    title: "Compare scenario paths before the team commits",
     description:
-      "Create parallel branches for expansion, recovery, or constrained scenarios and inspect the tradeoffs side by side",
-    bullets: ["What-if branches", "Faster course correction"],
+      "Lay out recovery, expansion, or fallback branches and review the tradeoffs side by side before changing the plan",
+    bullets: ["Scenario branches", "Decision tradeoffs"],
     icon: GitBranch,
   },
   {
     eyebrow: "Decision Memory",
-    title: "Capture why the account plan changed",
+    title: "Keep the why behind every account change",
     description:
-      "Keep assumptions, risks, checkpoints, and rationale attached to the record so context survives pressure and handoffs",
-    bullets: ["Decision trail", "Clear handoffs"],
+      "Store assumptions, risks, and review notes with the account so context survives pressure, handoffs, and ownership changes",
+    bullets: ["Decision history", "Shared context"],
     icon: ScrollText,
   },
   {
     eyebrow: "Execution Focus",
-    title: "Turn pipeline insight into coordinated action",
+    title: "Turn review decisions into owned next actions",
     description:
-      "Surface critical milestones, near-term actions, and accountability so the team stays aligned on what happens next",
-    bullets: ["Live priorities", "Explicit ownership"],
+      "Push the team from inspection to follow-through with explicit owners, due dates, and the next step tied to the account",
+    bullets: ["Clear ownership", "Next actions"],
     icon: Crosshair,
   },
 ];
@@ -105,11 +105,11 @@ export default function Features() {
                 id="features-title"
                 className="text-text max-w-xl text-4xl font-bold text-balance md:text-5xl"
               >
-                What revenue teams run inside Tactica
+                What teams actually run inside Tactica
               </h2>
               <p className="max-w-xl text-lg text-pretty md:text-xl">
-                Not just CRM and not just another dashboard. These are the
-                workflows
+                Not another CRM dashboard. A workspace for review, planning,
+                and follow-through.
               </p>
             </div>
           </div>

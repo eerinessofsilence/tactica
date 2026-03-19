@@ -152,7 +152,7 @@ export default function Footer() {
               </div>
 
               <div className="flex h-full flex-col items-end gap-5">
-                <div className="flex flex-wrap gap-2 xl:justify-end">
+                <div className="flex gap-2 xl:justify-end">
                   {SOCIAL_LINKS.map((link) => {
                     const Icon = link.icon;
 

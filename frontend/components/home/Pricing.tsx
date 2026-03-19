@@ -23,15 +23,15 @@ const PLANS: {
     price: "$29",
     period: "/month",
     description:
-      "For early revenue teams replacing spreadsheet-driven pipeline reviews with one shared workspace.",
-    highlight: "Best for first operating playbooks",
+      "For early revenue teams replacing scattered pipeline reviews with one shared workspace.",
+    highlight: "Best for first review and planning rhythms",
     cta: "Start with Starter",
     icon: Radar,
     features: [
       "Shared account and pipeline dashboard",
-      "Core CRM and opportunity tracking",
-      "Next-step scenario planning",
-      "Weekly pipeline review cadence",
+      "Core account and opportunity tracking",
+      "Scenario planning basics",
+      "Weekly review workflow",
     ],
   },
   {
@@ -39,8 +39,8 @@ const PLANS: {
     price: "$79",
     period: "/month",
     description:
-      "For revenue teams actively coordinating pipeline risk, account plans, and cross-functional follow-through.",
-    highlight: "Most teams running live operations start here",
+      "For revenue teams coordinating pipeline risk, account strategy, and cross-functional execution every week.",
+    highlight: "Most teams running active reviews start here",
     cta: "Choose Ops",
     icon: Crosshair,
     featured: true,
@@ -57,8 +57,8 @@ const PLANS: {
     price: "Custom",
     period: "annual",
     description:
-      "For organizations running strategic accounts across multiple teams, regions, and operating layers.",
-    highlight: "For multi-team planning environments",
+      "For organizations running strategic accounts across multiple teams, regions, and operating motions.",
+    highlight: "For governed multi-team rollouts",
     cta: "Talk to sales",
     icon: ShieldCheck,
     features: [
@@ -72,9 +72,9 @@ const PLANS: {
 ];
 
 const BUY_SIGNALS = [
-  "Replace CRM-spreadsheet drift with one operating layer for next-step planning.",
-  "Keep account context and execution reviews in the same workspace.",
-  "Scale into rollout support only when complexity actually demands it.",
+  "Run pipeline reviews and next-step planning in the same workspace.",
+  "Keep account context, ownership, and follow-through attached to the record.",
+  "Add rollout support only when team complexity actually requires it.",
 ];
 
 const COMPARISON_ROWS = [
@@ -82,16 +82,16 @@ const COMPARISON_ROWS = [
     label: "Best fit",
     values: [
       "Founder-led or early revenue teams",
-      "Growing teams running live pipeline reviews",
-      "Strategic account organizations across multiple teams",
+      "Growing teams running weekly pipeline reviews",
+      "Multi-team account organizations with governance needs",
     ],
   },
   {
     label: "Workflow depth",
     values: [
-      "Core CRM + workspace views",
+      "Shared visibility + basic planning",
       "Scenario planning + execution coordination",
-      "Governed workflows + custom rollout",
+      "Governed workflows + tailored rollout",
     ],
   },
   {
@@ -99,6 +99,9 @@ const COMPARISON_ROWS = [
     values: ["Self-serve", "Guided team adoption", "Hands-on rollout support"],
   },
 ];
+
+const COMPARISON_GRID_CLASS =
+  "grid grid-cols-[minmax(80px,0.5fr)_repeat(3,minmax(180px,1fr))] gap-x-5";
 
 export default function Pricing() {
   return (
@@ -116,12 +119,12 @@ export default function Pricing() {
               id="pricing-title"
               className="text-text mt-4 text-4xl font-bold text-balance md:text-5xl"
             >
-              Choose the revenue workspace your team needs now.
+              Choose the workspace depth your revenue team needs now.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-balance md:text-xl">
-              Start with shared account visibility and pipeline discipline, then
-              add deeper planning, inspection rituals, and rollout support as
-              account complexity grows.
+              Start with account and pipeline visibility, then add deeper
+              planning, decision history, and rollout support as operating
+              complexity grows.
             </p>
           </div>
 
@@ -214,8 +217,10 @@ export default function Pricing() {
 
           <div className="border-border/25 bg-foreground mt-8 overflow-hidden rounded-4xl border">
             <div className="overflow-x-auto overscroll-contain">
-              <div className="min-w-180">
-                <div className="text-text-muted/75 border-border/25 grid grid-cols-[160px_repeat(3,minmax(160px,1fr))] border-b px-5 py-4 text-sm md:grid-cols-[1.1fr_1fr_1fr_1fr] md:px-6">
+              <div className="min-w-200">
+                <div
+                  className={`${COMPARISON_GRID_CLASS} text-text-muted/75 border-border/25 items-end border-b px-5 py-4 text-sm md:px-6`}
+                >
                   <p className="font-medium tracking-widest uppercase">
                     Compare
                   </p>
@@ -232,19 +237,19 @@ export default function Pricing() {
                 {COMPARISON_ROWS.map((row, index) => (
                   <div
                     key={row.label}
-                    className={`grid grid-cols-[160px_repeat(3,minmax(160px,1fr))] gap-4 px-5 py-4 md:grid-cols-[1.1fr_1fr_1fr_1fr] md:px-6 ${
+                    className={`${COMPARISON_GRID_CLASS} items-start px-5 py-5 md:px-6 ${
                       index < COMPARISON_ROWS.length - 1
                         ? "border-border/25 border-b"
                         : ""
                     }`}
                   >
-                    <p className="text-text text-sm font-semibold md:text-base">
+                    <p className="text-text pr-3 text-sm leading-6 font-semibold md:text-base">
                       {row.label}
                     </p>
                     {row.values.map((value) => (
                       <p
                         key={value}
-                        className="text-text-muted text-sm md:text-base"
+                        className="text-text-muted text-sm leading-6 text-pretty md:text-base"
                       >
                         {value}
                       </p>

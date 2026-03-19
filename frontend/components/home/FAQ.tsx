@@ -5,22 +5,22 @@ const FAQ_ITEMS = [
   {
     question: "Who is Tactica built for?",
     answer:
-      "Tactica is built for revenue teams that need one place to manage accounts, inspect pipeline health, decide next steps, and coordinate execution. It fits sales, RevOps, customer-facing, and cross-functional teams working around live revenue decisions.",
+      "Tactica is built for revenue teams that need one place to review accounts, inspect pipeline health, decide next steps, and coordinate execution. It fits sales, RevOps, customer-facing, and cross-functional teams working around live revenue decisions.",
   },
   {
     question: "Is this meant to replace our CRM?",
     answer:
-      "It is meant to replace the messy combination of CRM views, spreadsheets, and status docs that teams rely on to actually run pipeline reviews and account decisions. The product should feel like the operating layer where context, planning, and execution live together.",
+      "Not necessarily. Tactica is the workspace where teams run pipeline reviews, compare options, and coordinate follow-through. Many teams can still keep CRM as the system of record while Tactica becomes the operating layer.",
   },
   {
     question: "How is this different from a standard CRM dashboard?",
     answer:
-      "A standard CRM dashboard shows pipeline state. Tactica is designed to help the team decide what to do next with that information. It combines visibility, account context, scenario planning, decision memory, and coordinated follow-through in one workspace.",
+      "A standard CRM dashboard shows pipeline state. Tactica is designed to help the team decide what to do next with that information. It combines visibility, account context, scenario planning, decision history, and coordinated follow-through in one workspace.",
   },
   {
     question: "Do we need a large team to get value from it?",
     answer:
-      "No. Smaller teams can use Tactica to replace loose CRM habits, spreadsheets, and status updates with a clearer operating rhythm. Larger organizations benefit when multiple teams need the same account picture, decision history, and branching logic.",
+      "No. Smaller teams can use Tactica to replace loose review habits, spreadsheets, and status updates with a clearer operating rhythm. Larger organizations benefit when multiple teams need the same account picture, decision history, and branching logic.",
   },
   {
     question: "Can we start with one revenue workflow and expand later?",
@@ -55,11 +55,12 @@ export default function FAQ() {
               id="faq-title"
               className="text-text max-w-xl text-4xl font-bold text-balance md:text-5xl"
             >
-              The questions revenue teams ask before they switch
+              The questions teams ask before they adopt Tactica
             </h2>
             <p className="mt-4 max-w-xl text-lg text-balance md:text-xl">
-              Most evaluation friction is about CRM replacement, migration,
-              adoption, and whether the workspace still helps when deals, owners
+              Most evaluation friction is about CRM overlap, migration,
+              adoption, and whether the workspace still helps when accounts,
+              owners, and priorities keep shifting.
             </p>
 
             <a

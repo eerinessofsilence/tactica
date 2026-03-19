@@ -53,12 +53,6 @@ export default function Header() {
         </ul>
         <div className="flex items-center gap-2 md:gap-4">
           <Link
-            to="/login"
-            className="text-text-muted border-border/50 hover:text-text hover:bg-secondary hidden rounded-full border px-6 py-3 text-lg transition-colors duration-200 lg:inline"
-          >
-            Sign in
-          </Link>
-          <Link
             to="/demo"
             className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text hidden rounded-full border px-6 py-3 text-xl transition-all duration-200 active:scale-[0.975] lg:inline"
           >
@@ -107,13 +101,6 @@ export default function Header() {
             })}
           </nav>
           <div className="grid gap-3">
-            <Link
-              to="/login"
-              onClick={handleMobileMenuLinkClick}
-              className="border-border/50 text-text-muted hover:text-text hover:bg-secondary inline-flex items-center justify-center rounded-full border px-5 py-3 text-base font-medium transition-all duration-200 active:scale-[0.975]"
-            >
-              Sign in
-            </Link>
             <Link
               to="/demo"
               onClick={handleMobileMenuLinkClick}

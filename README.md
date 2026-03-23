@@ -1,15 +1,16 @@
 # Tactica
 
-Tactica is a frontend prototype for a revenue workspace. The project combines a marketing landing page with an interactive demo shell that previews how a CRM, pipeline dashboard, scenario planning, and execution tracking can live in one product.
+Tactica is a revenue workspace prototype. The project currently combines a React marketing site and demo shell with a minimal Django backend for session-based authentication.
 
 ## Current Scope
 
 - Marketing site at `/`
 - Interactive demo workspace at `/demo`
-- Theme switching with dark/light persistence
-- Frontend-only implementation with static demo data
+- Django auth API for register, login, logout, and current session state
+- Dark-only frontend theme
+- Frontend demo data is still static
 
-There is no backend, authentication flow, or live data layer yet. Links like `/login` and `/signup` are placeholders for the next application phase.
+The backend only covers the first auth layer right now. There is still no real CRM data model, dashboard persistence, or authenticated `/app/*` product shell yet.
 
 ## Product Direction
 
@@ -31,15 +32,24 @@ The landing page explains the product narrative. The demo route shows the produc
 - React Router
 - Tailwind CSS v4 utilities
 - Lucide React icons
+- Django 5
+- Django sessions
 
 ## Routes
 
 - `/` — marketing homepage
 - `/demo` — interactive workspace preview
 
+Backend API:
+
+- `/api/auth/register/`
+- `/api/auth/login/`
+- `/api/auth/logout/`
+- `/api/auth/me/`
+
 ## Getting Started
 
-The app lives in `frontend`, so all npm commands should be run from that directory.
+Frontend commands should be run from `frontend`.
 
 ```bash
 cd frontend
@@ -47,7 +57,15 @@ npm install
 npm run dev
 ```
 
-The local dev server will start with Vite.
+Backend commands should be run from `backend`.
+
+```bash
+cd backend
+./venv/bin/python manage.py migrate
+./venv/bin/python manage.py runserver
+```
+
+The frontend starts with Vite. The backend starts with Django's dev server.
 
 ## Available Commands
 
@@ -60,11 +78,25 @@ npm run lint
 npm run preview
 ```
 
+Run these from `backend/`:
+
+```bash
+./venv/bin/python manage.py check
+./venv/bin/python manage.py migrate
+./venv/bin/python manage.py test auth_api
+./venv/bin/python manage.py runserver
+```
+
 ## Project Structure
 
 ```text
 tactica/
 ├── README.md
+├── backend/
+│   ├── app/
+│   ├── auth_api/
+│   ├── manage.py
+│   └── requirements.txt
 └── frontend/
     ├── components/
     │   ├── demo/
@@ -79,7 +111,6 @@ tactica/
     │   ├── App.tsx
     │   ├── index.css
     │   ├── main.tsx
-    │   └── theme.tsx
     └── package.json
 ```
 
@@ -90,7 +121,9 @@ tactica/
 - `frontend/src/pages/Demo.tsx` — interactive demo workspace with static dataset
 - `frontend/components/home/*` — landing page sections
 - `frontend/components/demo/*` — dashboard/workspace UI blocks
-- `frontend/src/theme.tsx` — theme provider and local storage persistence
+- `backend/app/settings.py` — Django project settings and local SQLite fallback
+- `backend/auth_api/views.py` — JSON auth endpoints
+- `backend/auth_api/tests.py` — backend auth flow tests
 
 ## Demo Workspace Notes
 
@@ -102,8 +135,32 @@ The demo route is intentionally static for now:
 
 This keeps the product story visible before the real app shell, auth, and data model are implemented.
 
+## Auth API Notes
+
+The backend uses Django's built-in user model and session authentication.
+
+Request bodies are JSON:
+
+```json
+{
+  "email": "owner@tactica.app",
+  "password": "SecurePass123!",
+  "name": "Ava Chen"
+}
+```
+
+Current endpoints:
+
+- `POST /api/auth/register/` — creates a user and starts a session
+- `POST /api/auth/login/` — authenticates and starts a session
+- `POST /api/auth/logout/` — clears the current session
+- `GET /api/auth/me/` — returns the current authenticated user or `null`
+
+Local backend setup now falls back to SQLite automatically when Postgres env vars are not provided.
+
 ## Next Logical Steps
 
+- connect frontend forms to the auth API
 - add real `/login` and `/signup` routes
 - move demo data into a dedicated mock data module
 - add URL state for demo sections

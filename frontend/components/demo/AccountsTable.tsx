@@ -16,14 +16,14 @@ type AccountsTableProps = {
 
 function getHealthClasses(health: AccountRow["health"]) {
   if (health === "Healthy") {
-    return "bg-secondary/25 text-text";
+    return "border-border bg-foreground text-text";
   }
 
   if (health === "Watch") {
-    return "bg-[rgba(255,157,79,0.18)] text-text";
+    return "border-border bg-secondary text-text";
   }
 
-  return "bg-[rgba(255,90,90,0.18)] text-text";
+  return "border-border bg-background text-text";
 }
 
 export default function AccountsTable({
@@ -32,34 +32,23 @@ export default function AccountsTable({
   onSelectAccount,
 }: AccountsTableProps) {
   return (
-    <section className="border-border bg-foreground rounded-[28px] border p-5 shadow-inner">
+    <section className="border-border bg-foreground rounded-[30px] border p-5">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-text-muted text-xs font-semibold tracking-[0.28em] uppercase">
-            Accounts In Motion
-          </p>
-          <h2 className="text-text mt-4 text-3xl font-semibold text-balance">
+        <div className="space-y-3">
+          <h2 className="text-text text-3xl font-semibold max-lg:text-center">
             Track the accounts, owners, and next steps driving pipeline.
           </h2>
-          <p className="text-text-muted mt-3 max-w-3xl text-sm text-balance md:text-base">
-            This is the CRM layer of the workspace: the team sees the live
-            stage, account health, value, ownership, and what must happen next
-            without rebuilding context in separate docs. Select any account to
-            update the scenario, decision, and action panels.
+          <p className="max-w-3xl text-sm leading-6 max-lg:text-center md:text-base">
+            This is the control layer of the workspace: the team sees live
+            stage, account health, value, ownership, and what happens next
+            without rebuilding context in separate docs.
           </p>
-        </div>
-
-        <div className="border-border bg-secondary/25 rounded-2xl border px-4 py-3 shadow-inner">
-          <p className="text-text text-sm font-medium">
-            Accounts reviewed today
-          </p>
-          <p className="text-text mt-1 text-2xl font-semibold">12</p>
         </div>
       </div>
 
       <div className="mt-6 overflow-x-auto overscroll-contain">
-        <div className="min-w-225">
-          <div className="text-text-muted/75 border-border grid grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] border-b px-4 py-3 text-xs font-semibold tracking-[0.22em] uppercase">
+        <div className="min-w-245">
+          <div className="bg-secondary/25 text-text-muted grid grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] gap-3 rounded-[22px] px-4 py-3 text-xs font-semibold tracking-[0.22em] uppercase">
             <p>Account</p>
             <p>Owner</p>
             <p>Stage</p>
@@ -69,53 +58,57 @@ export default function AccountsTable({
             <p>Due</p>
           </div>
 
-          {rows.map((row, index) => {
-            const isSelected = row.account === selectedAccount;
+          <div className="mt-3 space-y-2">
+            {rows.map((row) => {
+              const isSelected = row.account === selectedAccount;
 
-            return (
-              <button
-                key={`${row.account}-${row.stage}`}
-                type="button"
-                onClick={() => onSelectAccount?.(row.account)}
-                aria-pressed={isSelected}
-                className={`grid w-full grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] items-center gap-3 px-4 py-4 text-left transition-colors ${
-                  isSelected ? "bg-secondary/25" : "hover:bg-background/70"
-                } ${index < rows.length - 1 ? "border-border border-b" : ""}`}
-              >
-                <div>
-                  <p className="text-text text-sm font-semibold md:text-base">
-                    {row.account}
+              return (
+                <button
+                  key={`${row.account}-${row.stage}`}
+                  type="button"
+                  onClick={() => onSelectAccount?.(row.account)}
+                  aria-pressed={isSelected}
+                  className={`grid w-full grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] items-center gap-3 rounded-3xl border p-5 text-left transition-all duration-200 active:scale-[0.99] ${
+                    isSelected
+                      ? "border-border bg-secondary"
+                      : "border-border/50 bg-foreground hover:border-border hover:bg-secondary/25"
+                  }`}
+                >
+                  <div>
+                    <p className="text-text text-sm font-semibold md:text-base">
+                      {row.account}
+                    </p>
+                    <p className="text-text-muted mt-1 text-sm">
+                      {isSelected ? "Focused account" : "Live account view"}
+                    </p>
+                  </div>
+
+                  <p className="text-text-muted text-sm md:text-base">
+                    {row.owner}
                   </p>
-                  <p className="text-text-muted mt-1 text-sm">
-                    {isSelected ? "Focused account" : "Live account view"}
+                  <p className="text-text text-sm md:text-base">{row.stage}</p>
+
+                  <div>
+                    <span
+                      className={`inline-flex rounded-full border px-1.5 py-0.5 text-xs font-medium uppercase ${getHealthClasses(
+                        row.health,
+                      )}`}
+                    >
+                      {row.health}
+                    </span>
+                  </div>
+
+                  <p className="text-text text-sm font-medium md:text-base">
+                    {row.value}
                   </p>
-                </div>
-
-                <p className="text-text-muted text-sm md:text-base">
-                  {row.owner}
-                </p>
-                <p className="text-text text-sm md:text-base">{row.stage}</p>
-
-                <div>
-                  <span
-                    className={`border-border inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase shadow-inner ${getHealthClasses(
-                      row.health,
-                    )}`}
-                  >
-                    {row.health}
-                  </span>
-                </div>
-
-                <p className="text-text text-sm font-medium md:text-base">
-                  {row.value}
-                </p>
-                <p className="text-text-muted text-sm md:text-base">
-                  {row.nextStep}
-                </p>
-                <p className="text-text text-sm md:text-base">{row.due}</p>
-              </button>
-            );
-          })}
+                  <p className="text-text-muted text-sm md:text-base">
+                    {row.nextStep}
+                  </p>
+                  <p className="text-text text-sm md:text-base">{row.due}</p>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

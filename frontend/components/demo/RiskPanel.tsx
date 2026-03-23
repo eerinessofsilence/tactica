@@ -11,7 +11,7 @@ type RiskPanelProps = {
 
 export default function RiskPanel({ items }: RiskPanelProps) {
   return (
-    <section className="border-border bg-foreground rounded-[28px] border p-5 shadow-inner">
+    <section className="border-border bg-foreground rounded-[28px] border p-5">
       <p className="text-text-muted text-xs font-semibold tracking-[0.28em] uppercase">
         Attention Required
       </p>
@@ -27,13 +27,13 @@ export default function RiskPanel({ items }: RiskPanelProps) {
         {items.map((item) => (
           <article
             key={item.title}
-            className="border-border bg-foreground rounded-[22px] border p-4 shadow-inner"
+            className="border-border bg-foreground rounded-[22px] border p-5"
           >
             <div className="flex items-start justify-between gap-3">
               <p className="text-text text-sm font-semibold md:text-base">
                 {item.title}
               </p>
-              <span className="border-border bg-secondary/25 rounded-full border px-2.5 py-1 text-[11px] font-medium uppercase shadow-inner">
+              <span className="border-border bg-secondary/25 rounded-full border px-1 py-0.5 text-[11px] font-medium uppercase">
                 {item.severity}
               </span>
             </div>

@@ -10,11 +10,9 @@ type PipelineOverviewProps = {
   stages: PipelineStage[];
 };
 
-export default function PipelineOverview({
-  stages,
-}: PipelineOverviewProps) {
+export default function PipelineOverview({ stages }: PipelineOverviewProps) {
   return (
-    <section className="border-border bg-foreground rounded-[28px] border p-5 shadow-inner">
+    <section className="border-border bg-foreground rounded-[28px] border p-5">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-text-muted text-xs font-semibold tracking-[0.28em] uppercase">
@@ -29,8 +27,10 @@ export default function PipelineOverview({
           </p>
         </div>
 
-        <div className="border-border bg-secondary/25 rounded-2xl border px-4 py-3 shadow-inner">
-          <p className="text-text text-sm font-medium">Quarter target coverage</p>
+        <div className="border-border bg-secondary/25 rounded-2xl border px-4 py-3">
+          <p className="text-text text-sm font-medium">
+            Quarter target coverage
+          </p>
           <p className="text-text mt-1 text-2xl font-semibold">3.8x</p>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function PipelineOverview({
         {stages.map((stage) => (
           <article
             key={stage.stage}
-            className="border-border bg-foreground rounded-[22px] border p-4 shadow-inner"
+            className="border-border bg-foreground rounded-[22px] border p-5"
           >
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
@@ -50,8 +50,10 @@ export default function PipelineOverview({
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
-                <p className="text-text text-lg font-semibold">{stage.amount}</p>
-                <span className="border-border rounded-full border px-3 py-1 text-xs font-medium uppercase shadow-inner">
+                <p className="text-text text-lg font-semibold">
+                  {stage.amount}
+                </p>
+                <span className="border-border rounded-full border px-3 py-1 text-xs font-medium uppercase">
                   {stage.delta}
                 </span>
               </div>

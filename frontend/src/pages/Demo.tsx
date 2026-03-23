@@ -1,181 +1,85 @@
 import { useState } from "react";
+import {
+  ArrowLeft,
+  Download,
+  FolderOpen,
+  History,
+  LayoutDashboard,
+  Plus,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 import AccountsTable, {
   type AccountRow,
 } from "../../components/demo/AccountsTable";
-import DemoShell from "../../components/demo/DemoShell";
+import DemoShell from "../../components/demo/Shell";
 import DecisionLog, {
   type DecisionLogItem,
 } from "../../components/demo/DecisionLog";
-import DemoKpiCard from "../../components/demo/DemoKpiCard";
-import FocusedAccountCard from "../../components/demo/FocusedAccountCard";
+import DemoKpiCard from "../../components/demo/KpiCard";
 import NextActionsPanel, {
   type NextActionItem,
 } from "../../components/demo/NextActionsPanel";
-import PipelineOverview from "../../components/demo/PipelineOverview";
-import RiskPanel from "../../components/demo/RiskPanel";
-import DemoSidebar, {
-  type DemoSidebarItem,
-} from "../../components/demo/DemoSidebar";
 import ScenarioPanel, {
   type ScenarioItem,
 } from "../../components/demo/ScenarioPanel";
-import DemoTopbar from "../../components/demo/DemoTopbar";
+import DemoTopbar from "../../components/demo/Topbar";
 
-const SIDEBAR_ITEMS: DemoSidebarItem[] = [
-  {
-    label: "Dashboard",
-    targetId: "demo-dashboard",
-  },
-  {
-    label: "Accounts",
-    targetId: "demo-accounts",
-  },
-  {
-    label: "Pipeline",
-    targetId: "demo-pipeline",
-  },
-  {
-    label: "Scenarios",
-    targetId: "demo-scenarios",
-  },
-  {
-    label: "Tasks",
-    targetId: "demo-tasks",
-  },
-  {
-    label: "Activity",
-    targetId: "demo-activity",
-  },
-];
+type DemoView = "overview" | "plan" | "history";
 
-const SECTION_COPY: Record<
-  DemoSidebarItem["targetId"],
-  { eyebrow: string; title: string; description: string }
-> = {
-  "demo-dashboard": {
-    eyebrow: "Workspace overview",
-    title: "See the live revenue picture without opening five tools.",
-    description:
-      "Start from the top-level signals: pipeline coverage, account risk, and the active account the team is working right now.",
-  },
-  "demo-accounts": {
-    eyebrow: "Accounts",
-    title:
-      "Use the account list as the control point for the rest of the workspace.",
-    description:
-      "Pick the account you want to focus, then move into scenarios, tasks, or activity without losing the context behind the deal.",
-  },
-  "demo-pipeline": {
-    eyebrow: "Pipeline",
-    title:
-      "Inspect stage health, momentum, and the deals that need intervention.",
-    description:
-      "This view keeps the broad pipeline picture separate from account-level planning, so the dashboard stays readable while the team can still drill into risk.",
-  },
-  "demo-scenarios": {
-    eyebrow: "Scenarios",
-    title: "Compare next-step paths before the team commits.",
-    description:
-      "Scenario planning is the layer that turns a CRM record into an operating workspace: every option has tradeoffs, owners, and an explicit next action.",
-  },
-  "demo-tasks": {
-    eyebrow: "Tasks",
-    title: "Turn account context into assigned next actions.",
-    description:
-      "This is the execution layer for the currently focused account, so follow-ups, handoffs, and due dates stay tied to the plan behind them.",
-  },
-  "demo-activity": {
-    eyebrow: "Activity",
-    title: "Keep the decision trail visible as the account changes.",
-    description:
-      "Instead of losing context in chat or notes, the workspace stores the why behind stage changes, risk updates, and ownership shifts.",
-  },
+type SidebarNavItem = {
+  id: DemoView;
+  label: string;
+  description: string;
+  icon: LucideIcon;
 };
 
 const KPI_ITEMS = [
   {
     label: "Open pipeline",
-    value: "$2.4M",
-    note: "Across 18 active opportunities",
-    trend: "+12% vs last month",
+    value: "$725K",
+    note: "Across 4 active accounts in the workspace",
+    trend: "1 renewal save motion in play",
   },
   {
-    label: "Forecast coverage",
-    value: "3.8x",
-    note: "Weighted coverage against target",
-    trend: "Healthy for this quarter",
+    label: "Scenario paths",
+    value: "8",
+    note: "Recovery, expansion, and close paths under review",
+    trend: "2 options attached to every account",
   },
   {
-    label: "At-risk accounts",
-    value: "5",
-    note: "Require executive or cross-team review",
-    trend: "2 escalated this week",
+    label: "Accounts at risk",
+    value: "2",
+    note: "Atlas and Apex need intervention this week",
+    trend: "1 executive escalation active",
   },
   {
-    label: "Next actions due",
-    value: "14",
-    note: "Tasks and handoffs due in 7 days",
-    trend: "4 overdue right now",
-  },
-];
-
-const PIPELINE_STAGES = [
-  {
-    stage: "Qualified",
-    amount: "$540K",
-    deals: 5,
-    coverage: 82,
-    delta: "+6%",
-  },
-  {
-    stage: "Proposal",
-    amount: "$780K",
-    deals: 4,
-    coverage: 68,
-    delta: "+14%",
-  },
-  {
-    stage: "Security Review",
-    amount: "$360K",
-    deals: 3,
-    coverage: 41,
-    delta: "-3%",
-  },
-  {
-    stage: "Negotiation",
-    amount: "$520K",
-    deals: 4,
-    coverage: 73,
-    delta: "+8%",
-  },
-  {
-    stage: "Commit",
-    amount: "$220K",
-    deals: 2,
-    coverage: 91,
-    delta: "On track",
+    label: "Actions due",
+    value: "8",
+    note: "Owners and due dates tied to the current plan",
+    trend: "2 follow-ups due today",
   },
 ];
 
-const RISK_ITEMS = [
+const SIDEBAR_ITEMS: SidebarNavItem[] = [
   {
-    title: "Atlas Health renewal slipped",
-    severity: "High",
-    detail: "Executive sponsor changed and next-step ownership is unclear.",
-    meta: "Renewal review due tomorrow",
+    id: "overview",
+    label: "Dashboard",
+    description: "Pipeline snapshot and live focus",
+    icon: LayoutDashboard,
   },
   {
-    title: "Northstar legal review open",
-    severity: "Medium",
-    detail:
-      "Security questionnaire is complete but legal is blocking proposal.",
-    meta: "Proposal stage stalled for 6 days",
+    id: "plan",
+    label: "Scenario Plan",
+    description: "Compare recovery and expansion paths",
+    icon: FolderOpen,
   },
   {
-    title: "Apex Retail forecast moved",
-    severity: "Medium",
-    detail: "Probability dropped after budget timing shifted into next month.",
-    meta: "Forecast delta: -$80K",
+    id: "history",
+    label: "Decision Log",
+    description: "See how the plan changed over time",
+    icon: History,
   },
 ];
 
@@ -190,80 +94,13 @@ type DemoAccountWorkspace = {
 const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
   {
     row: {
-      account: "Northstar Logistics",
-      owner: "Ava Chen",
-      stage: "Negotiation",
-      health: "Healthy",
-      value: "$180K",
-      nextStep: "Finalize commercial terms",
-      due: "Mar 18",
-    },
-    summary:
-      "Northstar is in a strong commercial position, but procurement alignment will decide whether the team lands an expansion or slips into another review loop.",
-    scenarios: [
-      {
-        title: "Push expansion",
-        account: "Northstar Logistics",
-        impact: "+$120K upside",
-        risk: "Medium",
-        owner: "Ava Chen",
-        nextAction: "Align procurement and send commercial revision",
-        summary:
-          "Use the current momentum to widen scope before legal review begins.",
-      },
-      {
-        title: "Land core deal now",
-        account: "Northstar Logistics",
-        impact: "Protect $180K close",
-        risk: "Low",
-        owner: "Ava Chen",
-        nextAction: "Reduce optional modules and lock signature path",
-        summary:
-          "Shorten the cycle by prioritizing the committed package over expansion.",
-      },
-    ],
-    decisionLog: [
-      {
-        title: "Northstar pricing path updated",
-        detail:
-          "Commercial terms were revised after procurement signaled scope flexibility.",
-        author: "Ava Chen",
-        time: "4h ago",
-      },
-      {
-        title: "Legal review risk removed",
-        detail:
-          "Security and legal dependencies were cleared before pricing revision was sent.",
-        author: "Leo Brooks",
-        time: "Yesterday",
-      },
-    ],
-    nextActions: [
-      {
-        title: "Send Northstar revised commercial terms",
-        owner: "Ava Chen",
-        due: "Mar 18",
-        priority: "High",
-        context: "Push expansion",
-      },
-      {
-        title: "Confirm procurement decision owner",
-        owner: "Leo Brooks",
-        due: "Mar 18",
-        priority: "Medium",
-        context: "Negotiation path",
-      },
-    ],
-  },
-  {
-    row: {
       account: "Atlas Health",
       owner: "Noah Patel",
       stage: "Renewal Review",
       health: "At risk",
       value: "$240K",
-      nextStep: "Executive alignment call",
-      due: "Mar 16",
+      nextStep: "Run executive alignment call",
+      due: "Today",
     },
     summary:
       "Atlas is the highest-priority risk in the workspace. The team needs an immediate save motion with explicit executive ownership before renewal momentum collapses.",
@@ -316,9 +153,76 @@ const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
       {
         title: "Rebuild Atlas stakeholder map",
         owner: "Mila Carter",
-        due: "Mar 16",
+        due: "Mar 20",
         priority: "High",
         context: "Recovery path",
+      },
+    ],
+  },
+  {
+    row: {
+      account: "Northstar Logistics",
+      owner: "Ava Chen",
+      stage: "Negotiation",
+      health: "Healthy",
+      value: "$180K",
+      nextStep: "Finalize commercial terms",
+      due: "Mar 20",
+    },
+    summary:
+      "Northstar is in a strong commercial position, but procurement alignment will decide whether the team lands an expansion or slips into another review loop.",
+    scenarios: [
+      {
+        title: "Push expansion",
+        account: "Northstar Logistics",
+        impact: "+$120K upside",
+        risk: "Medium",
+        owner: "Ava Chen",
+        nextAction: "Align procurement and send commercial revision",
+        summary:
+          "Use the current momentum to widen scope before legal review begins.",
+      },
+      {
+        title: "Land core deal now",
+        account: "Northstar Logistics",
+        impact: "Protect $180K close",
+        risk: "Low",
+        owner: "Ava Chen",
+        nextAction: "Reduce optional modules and lock signature path",
+        summary:
+          "Shorten the cycle by prioritizing the committed package over expansion.",
+      },
+    ],
+    decisionLog: [
+      {
+        title: "Northstar pricing path updated",
+        detail:
+          "Commercial terms were revised after procurement signaled scope flexibility.",
+        author: "Ava Chen",
+        time: "4h ago",
+      },
+      {
+        title: "Legal review risk removed",
+        detail:
+          "Security and legal dependencies were cleared before pricing revision was sent.",
+        author: "Leo Brooks",
+        time: "Yesterday",
+      },
+    ],
+    nextActions: [
+      {
+        title: "Send Northstar revised commercial terms",
+        owner: "Ava Chen",
+        due: "Mar 20",
+        priority: "High",
+        context: "Push expansion",
+      },
+      {
+        title: "Confirm procurement decision owner",
+        owner: "Leo Brooks",
+        due: "Mar 20",
+        priority: "Medium",
+        context: "Negotiation path",
       },
     ],
   },
@@ -330,7 +234,7 @@ const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
       health: "Watch",
       value: "$95K",
       nextStep: "Update pricing options",
-      due: "Mar 19",
+      due: "Mar 21",
     },
     summary:
       "Apex is still recoverable, but the deal needs a new buying path and tighter pricing narrative before confidence returns.",
@@ -377,150 +281,16 @@ const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
       {
         title: "Add finance stakeholder for Apex Retail",
         owner: "Mila Carter",
-        due: "Mar 19",
+        due: "Mar 21",
         priority: "Medium",
         context: "Multi-thread recovery",
       },
       {
         title: "Update Apex pricing options",
         owner: "Ava Chen",
-        due: "Mar 19",
-        priority: "Medium",
-        context: "Budget-safe close",
-      },
-    ],
-  },
-  {
-    row: {
-      account: "Cinder Systems",
-      owner: "Leo Brooks",
-      stage: "Security Review",
-      health: "Watch",
-      value: "$130K",
-      nextStep: "Confirm questionnaire owner",
-      due: "Mar 20",
-    },
-    summary:
-      "Cinder is blocked by review ownership, not by deal quality. The team needs to clear the security lane before commercial momentum drops.",
-    scenarios: [
-      {
-        title: "Fast-track security unblock",
-        account: "Cinder Systems",
-        impact: "Recover stage velocity",
-        risk: "Medium",
-        owner: "Leo Brooks",
-        nextAction: "Assign questionnaire owner and schedule review checkpoint",
-        summary:
-          "Remove the operational blocker before the deal starts to decay.",
-      },
-      {
-        title: "Commercial parallel path",
-        account: "Cinder Systems",
-        impact: "Keep buyer engaged",
-        risk: "Low",
-        owner: "Leo Brooks",
-        nextAction: "Advance pricing discussion while security closes",
-        summary:
-          "Preserve deal energy by continuing buyer work in parallel with review.",
-      },
-    ],
-    decisionLog: [
-      {
-        title: "Security review owner still unassigned",
-        detail:
-          "The team flagged ownership risk after questionnaire prep finished without an internal reviewer.",
-        author: "Leo Brooks",
-        time: "3h ago",
-      },
-      {
-        title: "Buyer requested earlier pricing preview",
-        detail:
-          "Commercial team kept engagement warm while security remained open.",
-        author: "Ava Chen",
-        time: "Today",
-      },
-    ],
-    nextActions: [
-      {
-        title: "Confirm Cinder security questionnaire owner",
-        owner: "Leo Brooks",
-        due: "Mar 20",
-        priority: "Medium",
-        context: "Fast-track security unblock",
-      },
-      {
-        title: "Send interim pricing preview",
-        owner: "Ava Chen",
-        due: "Mar 20",
-        priority: "Low",
-        context: "Commercial parallel path",
-      },
-    ],
-  },
-  {
-    row: {
-      account: "Horizon Energy",
-      owner: "Ava Chen",
-      stage: "Qualified",
-      health: "Healthy",
-      value: "$75K",
-      nextStep: "Book technical discovery",
-      due: "Mar 21",
-    },
-    summary:
-      "Horizon is an early-stage opportunity with clean momentum. The priority is to qualify deeply before the team spends cross-functional effort.",
-    scenarios: [
-      {
-        title: "Deep qualification",
-        account: "Horizon Energy",
-        impact: "Improve deal quality",
-        risk: "Low",
-        owner: "Ava Chen",
-        nextAction: "Run technical discovery and confirm timing signal",
-        summary:
-          "Use the next call to validate need, timing, and realistic expansion potential.",
-      },
-      {
-        title: "Fast commercial test",
-        account: "Horizon Energy",
-        impact: "Accelerate early signal",
-        risk: "Medium",
-        owner: "Ava Chen",
-        nextAction: "Share lightweight pricing frame before full discovery",
-        summary:
-          "Test urgency earlier, but accept the risk of a shallower qualification path.",
-      },
-    ],
-    decisionLog: [
-      {
-        title: "Discovery path confirmed for Horizon",
-        detail:
-          "Team agreed to validate technical fit before introducing cross-functional support.",
-        author: "Ava Chen",
-        time: "Today",
-      },
-      {
-        title: "Expansion potential flagged",
-        detail:
-          "Initial buyer notes show likely follow-on scope if technical needs line up.",
-        author: "Noah Patel",
-        time: "Today",
-      },
-    ],
-    nextActions: [
-      {
-        title: "Book Horizon technical discovery",
-        owner: "Ava Chen",
         due: "Mar 21",
         priority: "Medium",
-        context: "Deep qualification",
-      },
-      {
-        title: "Document Horizon expansion notes",
-        owner: "Noah Patel",
-        due: "Mar 22",
-        priority: "Low",
-        context: "Qualification review",
+        context: "Budget-safe close",
       },
     ],
   },
@@ -532,7 +302,7 @@ const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
       health: "Healthy",
       value: "$210K",
       nextStep: "Prepare implementation handoff",
-      due: "Mar 17",
+      due: "Mar 24",
     },
     summary:
       "Meridian is close to the line. The main risk now is handoff quality, not closing confidence, so the workspace should shift toward execution readiness.",
@@ -578,14 +348,14 @@ const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
       {
         title: "Prepare Meridian implementation handoff",
         owner: "Noah Patel",
-        due: "Mar 17",
+        due: "Mar 24",
         priority: "High",
         context: "Clean commit handoff",
       },
       {
         title: "Validate Meridian onboarding dependencies",
         owner: "Leo Brooks",
-        due: "Mar 17",
+        due: "Mar 24",
         priority: "Medium",
         context: "Execution readiness",
       },
@@ -593,104 +363,168 @@ const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
   },
 ];
 
-type DemoSectionIntroProps = {
-  eyebrow: string;
-  title: string;
-  description: string;
+function getHealthClasses(health: AccountRow["health"]) {
+  if (health === "Healthy") {
+    return "border-border/25 bg-foreground";
+  }
+
+  if (health === "Watch") {
+    return "border-border/75 bg-secondary/25 text-text/75";
+  }
+
+  return "border-border bg-secondary text-text";
+}
+
+type DemoAccountSwitcherProps = {
+  workspaces: DemoAccountWorkspace[];
+  selectedAccountName: string;
+  onChange: (accountName: string) => void;
 };
 
-function DemoSectionIntro({
-  eyebrow,
-  title,
-  description,
-}: DemoSectionIntroProps) {
+function DemoAccountSwitcher({
+  workspaces,
+  selectedAccountName,
+  onChange,
+}: DemoAccountSwitcherProps) {
   return (
-    <section className="border-border bg-foreground shadow-text/20 rounded-[28px] border p-5 shadow-inner">
-      <p className="text-text-muted text-xs font-semibold tracking-[0.28em] uppercase">
-        {eyebrow}
-      </p>
-      <h1 className="text-text mt-4 max-w-2xl text-3xl font-semibold text-balance md:text-4xl">
-        {title}
-      </h1>
-      <p className="text-text-muted mt-3 max-w-3xl text-sm text-pretty md:text-base">
-        {description}
-      </p>
+    <section className="border-border bg-foreground rounded-[30px] border p-5">
+      <div className="flex flex-col gap-3 md:justify-between">
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-medium tracking-widest uppercase">
+            Focused account
+          </p>
+          <div className="border-border bg-secondary text-text/75 w-fit rounded-full border px-1.5 py-0.5 text-xs font-medium tracking-widest text-nowrap uppercase">
+            4 live accounts
+          </div>
+        </div>
+        <p className="text-text text-lg font-semibold">
+          Switch the live workspace context without losing the dashboard.
+        </p>
+      </div>
+
+      <div className="mt-4 overflow-x-auto overscroll-contain">
+        <div className="flex min-w-max gap-2">
+          {workspaces.map((workspace) => {
+            const isActive = workspace.row.account === selectedAccountName;
+
+            return (
+              <button
+                key={workspace.row.account}
+                type="button"
+                onClick={() => onChange(workspace.row.account)}
+                aria-pressed={isActive}
+                className={`min-w-55 rounded-3xl border px-4 py-4 text-left transition-all duration-200 active:scale-[0.98] ${
+                  isActive
+                    ? "border-border bg-secondary"
+                    : "border-border/50 bg-foreground hover:border-border hover:bg-secondary"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-text text-sm font-semibold">
+                      {workspace.row.account}
+                    </p>
+                    <p className="text-text-muted mt-1 text-xs tracking-[0.12em] uppercase">
+                      {workspace.row.stage}
+                    </p>
+                  </div>
+                  <span
+                    className={`text-text-muted inline-flex rounded-full border px-1.5 py-0.5 text-[10px] uppercase ${getHealthClasses(
+                      workspace.row.health,
+                    )}`}
+                  >
+                    {workspace.row.health}
+                  </span>
+                </div>
+
+                <p className="mt-4 text-sm">
+                  {workspace.row.owner} ·{" "}
+                  <strong className="text-text">{workspace.row.value}</strong>
+                </p>
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }
 
-type FocusContextBannerProps = {
-  row: AccountRow;
-  summary: string;
-  onChangeAccount: () => void;
+type DemoSidebarProps = {
+  activeView: DemoView;
+  onChange: (view: DemoView) => void;
+  selectedWorkspace: DemoAccountWorkspace;
 };
 
-function FocusContextBanner({
-  row,
-  summary,
-  onChangeAccount,
-}: FocusContextBannerProps) {
+function DemoSidebar({ activeView, onChange }: DemoSidebarProps) {
   return (
-    <section className="border-border bg-foreground rounded-[28px] border p-5 shadow-inner">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+    <div className="flex flex-col">
+      <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-text-muted text-xs font-semibold tracking-[0.28em] uppercase">
-            Focused account
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            <h2 className="text-text text-3xl font-semibold text-balance">
-              {row.account}
-            </h2>
-            <span className="border-border text-text-muted inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase shadow-inner">
-              {row.stage}
-            </span>
-            <span className="border-border text-text-muted inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase shadow-inner">
-              {row.health}
-            </span>
-          </div>
-          <p className="text-text-muted mt-3 max-w-3xl text-sm text-balance md:text-base">
-            {summary}
-          </p>
+          <p className="text-text text-lg font-semibold">Tactica</p>
+          <p className="text-text-muted text-sm">Revenue Workspace</p>
         </div>
-
-        <button
-          type="button"
-          onClick={onChangeAccount}
-          className="border-border bg-secondary text-text rounded-full border px-5 py-3 text-sm font-medium shadow-inner transition-all duration-200 active:scale-[0.975]"
-        >
-          Change account
-        </button>
-      </div>
-
-      <div className="mt-5 grid gap-3 md:grid-cols-4">
-        <div className="border-border rounded-[22px] border px-4 py-3 shadow-inner">
-          <p className="text-text-muted text-[11px] font-semibold tracking-[0.16em] uppercase">
-            Owner
-          </p>
-          <p className="text-text mt-2 text-sm font-medium">{row.owner}</p>
-        </div>
-        <div className="border-border rounded-[22px] border px-4 py-3 shadow-inner">
-          <p className="text-text-muted text-[11px] font-semibold tracking-[0.16em] uppercase">
-            Value
-          </p>
-          <p className="text-text mt-2 text-sm font-medium">{row.value}</p>
-        </div>
-        <div className="border-border rounded-[22px] border px-4 py-3 shadow-inner">
-          <p className="text-text-muted text-[11px] font-semibold tracking-[0.16em] uppercase">
-            Next step
-          </p>
-          <p className="text-text mt-2 text-sm font-medium text-balance">
-            {row.nextStep}
-          </p>
-        </div>
-        <div className="border-border rounded-[22px] border px-4 py-3 shadow-inner">
-          <p className="text-text-muted text-[11px] font-semibold tracking-[0.16em] uppercase">
-            Due
-          </p>
-          <p className="text-text mt-2 text-sm font-medium">{row.due}</p>
+        <div className="border-border bg-foreground text-text-muted inline-flex items-center gap-2 rounded-full border px-2 py-0.5 text-xs font-medium tracking-wider uppercase">
+          <Sparkles className="h-3 w-3" />
+          Demo
         </div>
       </div>
-    </section>
+      <div className="flex flex-col">
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3 xl:grid-cols-1">
+          {SIDEBAR_ITEMS.map((item) => {
+            const Icon = item.icon;
+            const isActive = item.id === activeView;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => onChange(item.id)}
+                aria-pressed={isActive}
+                className={`flex h-fit items-start gap-3 rounded-[22px] border px-4 py-4 text-left transition-all duration-200 active:scale-[0.98] ${
+                  isActive
+                    ? "border-border bg-secondary"
+                    : "border-border/50 bg-foreground hover:border-border hover:bg-secondary"
+                }`}
+              >
+                <div
+                  className={`mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${
+                    isActive
+                      ? "bg-background text-text"
+                      : "bg-secondary text-text-muted"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-text text-sm font-semibold">
+                    {item.label}
+                  </p>
+                  <p className="text-text-muted mt-1 text-xs leading-5">
+                    {item.description}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-4">
+          <p className="text-text text-lg font-semibold">Back to site</p>
+          <p className="text-text-muted mt-2 text-sm leading-6">
+            Return to the landing page after reviewing the dashboard shell and
+            workspace flow.
+          </p>
+          <Link
+            to="/"
+            className="border-border bg-foreground hover:bg-secondary hover:text-text mt-3 inline-flex items-center justify-center gap-1 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors duration-200 active:scale-[0.975]"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Home
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -698,132 +532,65 @@ export default function Demo() {
   const [selectedAccountName, setSelectedAccountName] = useState(
     ACCOUNT_WORKSPACES[0]?.row.account ?? "",
   );
-  const [activeSectionId, setActiveSectionId] = useState(
-    SIDEBAR_ITEMS[0]?.targetId ?? "demo-dashboard",
-  );
+  const [activeView, setActiveView] = useState<DemoView>("overview");
 
   const selectedWorkspace =
     ACCOUNT_WORKSPACES.find(({ row }) => row.account === selectedAccountName) ??
     ACCOUNT_WORKSPACES[0];
-  const activeSection =
-    SECTION_COPY[activeSectionId] ?? SECTION_COPY["demo-dashboard"];
 
-  const handleSidebarSelect = (targetId: string) => {
-    setActiveSectionId(targetId);
-  };
-
-  const renderActiveSection = () => {
-    if (activeSectionId === "demo-dashboard") {
+  const renderActiveView = () => {
+    if (activeView === "overview") {
       return (
-        <div className="space-y-5 lg:space-y-6">
-          <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-4">
-            {KPI_ITEMS.map((item) => (
-              <DemoKpiCard
-                key={item.label}
-                label={item.label}
-                value={item.value}
-                note={item.note}
-                trend={item.trend}
-              />
-            ))}
+        <div className="flex flex-col gap-4">
+          <div className="space-y-4">
+            <AccountsTable
+              rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
+              selectedAccount={selectedWorkspace.row.account}
+              onSelectAccount={setSelectedAccountName}
+            />
           </div>
 
-          <FocusedAccountCard
-            row={selectedWorkspace.row}
-            summary={selectedWorkspace.summary}
-            scenarioCount={selectedWorkspace.scenarios.length}
-            actionCount={selectedWorkspace.nextActions.length}
-            updateTime={selectedWorkspace.decisionLog[0]?.time ?? "Now"}
-          />
+          <div className="space-y-4">
+            <NextActionsPanel
+              accountName={selectedWorkspace.row.account}
+              items={selectedWorkspace.nextActions}
+            />
+            <DecisionLog
+              accountName={selectedWorkspace.row.account}
+              items={selectedWorkspace.decisionLog}
+            />
+          </div>
         </div>
       );
     }
 
-    if (activeSectionId === "demo-accounts") {
+    if (activeView === "plan") {
       return (
-        <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
+        <div className="space-y-4">
+          <div className="flex flex-col gap-4">
+            <div>
+              <ScenarioPanel
+                accountName={selectedWorkspace.row.account}
+                items={selectedWorkspace.scenarios}
+              />
+            </div>
+
+            <div className="space-y-4">
+              <NextActionsPanel
+                accountName={selectedWorkspace.row.account}
+                items={selectedWorkspace.nextActions}
+              />
+              <DecisionLog
+                accountName={selectedWorkspace.row.account}
+                items={selectedWorkspace.decisionLog}
+              />
+            </div>
+          </div>
+
           <AccountsTable
             rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
             selectedAccount={selectedWorkspace.row.account}
             onSelectAccount={setSelectedAccountName}
-          />
-          <div className="border-border bg-foreground rounded-[28px] border p-5 shadow-inner">
-            <p className="text-text-muted text-xs font-semibold tracking-[0.28em] uppercase">
-              Account focus
-            </p>
-            <h2 className="text-text mt-4 text-3xl font-semibold text-balance">
-              Choose the account, then open the working view you need.
-            </h2>
-            <p className="text-text-muted mt-3 text-sm text-balance md:text-base">
-              The selected row becomes the context for scenarios, tasks, and
-              activity. That keeps the demo compact while still behaving like a
-              real workspace.
-            </p>
-
-            <div className="mt-5 grid gap-3">
-              <button
-                type="button"
-                onClick={() => handleSidebarSelect("demo-scenarios")}
-                className="border-border bg-secondary text-text rounded-2xl border px-4 py-3 text-left text-sm font-medium shadow-inner transition-all duration-200 active:scale-[0.98]"
-              >
-                Open scenarios for {selectedWorkspace.row.account}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleSidebarSelect("demo-tasks")}
-                className="border-border bg-foreground text-text rounded-2xl border px-4 py-3 text-left text-sm font-medium shadow-inner transition-all duration-200 active:scale-[0.98]"
-              >
-                Open tasks for {selectedWorkspace.row.account}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleSidebarSelect("demo-activity")}
-                className="border-border bg-foreground text-text rounded-2xl border px-4 py-3 text-left text-sm font-medium shadow-inner transition-all duration-200 active:scale-[0.98]"
-              >
-                Open activity for {selectedWorkspace.row.account}
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (activeSectionId === "demo-pipeline") {
-      return (
-        <div className="grid gap-4 xl:grid-cols-[1.4fr_0.6fr]">
-          <PipelineOverview stages={PIPELINE_STAGES} />
-          <RiskPanel items={RISK_ITEMS} />
-        </div>
-      );
-    }
-
-    if (activeSectionId === "demo-scenarios") {
-      return (
-        <div className="space-y-4">
-          <FocusContextBanner
-            row={selectedWorkspace.row}
-            summary={selectedWorkspace.summary}
-            onChangeAccount={() => handleSidebarSelect("demo-accounts")}
-          />
-          <ScenarioPanel
-            accountName={selectedWorkspace.row.account}
-            items={selectedWorkspace.scenarios}
-          />
-        </div>
-      );
-    }
-
-    if (activeSectionId === "demo-tasks") {
-      return (
-        <div className="space-y-4">
-          <FocusContextBanner
-            row={selectedWorkspace.row}
-            summary={selectedWorkspace.summary}
-            onChangeAccount={() => handleSidebarSelect("demo-accounts")}
-          />
-          <NextActionsPanel
-            accountName={selectedWorkspace.row.account}
-            items={selectedWorkspace.nextActions}
           />
         </div>
       );
@@ -831,14 +598,18 @@ export default function Demo() {
 
     return (
       <div className="space-y-4">
-        <FocusContextBanner
-          row={selectedWorkspace.row}
-          summary={selectedWorkspace.summary}
-          onChangeAccount={() => handleSidebarSelect("demo-accounts")}
-        />
         <DecisionLog
           accountName={selectedWorkspace.row.account}
           items={selectedWorkspace.decisionLog}
+        />
+        <AccountsTable
+          rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
+          selectedAccount={selectedWorkspace.row.account}
+          onSelectAccount={setSelectedAccountName}
+        />
+        <NextActionsPanel
+          accountName={selectedWorkspace.row.account}
+          items={selectedWorkspace.nextActions}
         />
       </div>
     );
@@ -848,25 +619,118 @@ export default function Demo() {
     <DemoShell
       sidebar={
         <DemoSidebar
-          items={SIDEBAR_ITEMS}
-          activeTargetId={activeSectionId}
-          onSelectItem={handleSidebarSelect}
+          activeView={activeView}
+          onChange={setActiveView}
+          selectedWorkspace={selectedWorkspace}
         />
       }
-      topbar={
-        <DemoTopbar
-          title="Demo Workspace"
-          subtitle="Preview the shell for pipeline visibility, account context, and next-step planning."
-        />
-      }
+      topbar={<DemoTopbar />}
     >
-      <div className="space-y-5 lg:space-y-6">
-        <DemoSectionIntro
-          eyebrow={activeSection.eyebrow}
-          title={activeSection.title}
-          description={activeSection.description}
+      <div className="space-y-4 lg:space-y-5">
+        <section className="">
+          <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
+            <div className="flex max-w-3xl flex-col max-lg:items-center">
+              <div className="border-border bg-foreground inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold tracking-[0.16em] uppercase">
+                <Sparkles className="h-3.5 w-3.5" />
+                Sales Command Center
+              </div>
+              <h1 className="text-text mt-4 text-4xl font-semibold tracking-tight max-lg:text-center md:text-5xl">
+                Revenue dashboard
+              </h1>
+              <p className="text-text-muted mt-3 max-w-3xl text-sm leading-7 max-lg:text-center md:text-lg">
+                Review the pipeline, pressure-test scenarios, and turn account
+                context into actions without leaving the same workspace.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 text-nowrap sm:flex-row xl:flex-col">
+              <button
+                type="button"
+                className="border-border bg-secondary text-text hover:bg-foreground hover:text-text-muted inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
+              >
+                <Plus className="h-4 w-4" />
+                Run Review
+              </button>
+              <button
+                type="button"
+                className="border-border bg-foreground text-text-muted hover:bg-secondary hover:text-text inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
+              >
+                <Download className="h-4 w-4" />
+                Import Data
+              </button>
+            </div>
+          </div>
+
+          <section className="border-border bg-secondary/25 mt-6 rounded-[28px] border p-5">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <p className="text-text text-2xl font-semibold">
+                    {selectedWorkspace.row.account}
+                  </p>
+                  <span
+                    className={`inline-flex rounded-full border px-1.5 py-0.5 text-xs font-medium uppercase ${getHealthClasses(
+                      selectedWorkspace.row.health,
+                    )}`}
+                  >
+                    {selectedWorkspace.row.health}
+                  </span>
+                </div>
+                <p className="text-sm leading-6 md:text-base">
+                  {selectedWorkspace.summary}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
+                <p className="text-xs tracking-widest uppercase">Owner</p>
+                <p className="text-text mt-1 font-medium lg:text-lg">
+                  {selectedWorkspace.row.owner}
+                </p>
+              </div>
+              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
+                <p className="text-xs tracking-widest uppercase">Stage</p>
+                <p className="text-text mt-1 font-medium lg:text-lg">
+                  {selectedWorkspace.row.stage}
+                </p>
+              </div>
+              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
+                <p className="text-xs tracking-widest uppercase">Value</p>
+                <p className="text-text mt-1 font-medium lg:text-lg">
+                  {selectedWorkspace.row.value}
+                </p>
+              </div>
+              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
+                <p className="text-xs tracking-widest uppercase">Next step</p>
+                <p className="text-text mt-1 font-medium lg:text-lg">
+                  {selectedWorkspace.row.nextStep}
+                </p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <DemoAccountSwitcher
+          workspaces={ACCOUNT_WORKSPACES}
+          selectedAccountName={selectedWorkspace.row.account}
+          onChange={setSelectedAccountName}
         />
-        {renderActiveSection()}
+
+        <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-4">
+          {KPI_ITEMS.map((item, index) => (
+            <DemoKpiCard
+              key={item.label}
+              label={item.label}
+              value={item.value}
+              note={item.note}
+              trend={item.trend}
+              accent={index === 0}
+            />
+          ))}
+        </div>
+
+        {renderActiveView()}
       </div>
     </DemoShell>
   );

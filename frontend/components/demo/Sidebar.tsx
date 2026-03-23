@@ -28,10 +28,10 @@ export default function DemoSidebar({
               type="button"
               onClick={() => onSelectItem?.(item.targetId)}
               aria-pressed={isActive}
-              className={`border-border rounded-2xl border px-4 py-3 text-left text-sm font-medium shadow-inner transition-colors ${
+              className={`border-border rounded-2xl border px-4 py-3 text-left text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-secondary text-text shadow-text/30"
-                  : "bg-foreground shadow-text/20 text-text-muted hover:bg-background/70"
+                  ? "bg-secondary text-text"
+                  : "bg-foreground text-text-muted hover:bg-background/70"
               }`}
             >
               {item.label}

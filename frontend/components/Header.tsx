@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const NAV_LINKS = [
   {
@@ -23,10 +23,13 @@ const NAV_LINKS = [
 
 export default function Header() {
   const mobileMenuId = "mobile-menu";
+  const location = useLocation();
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const handleMobileMenuToggle = () =>
     setMobileMenuIsOpen((prevState) => !prevState);
   const handleMobileMenuLinkClick = () => setMobileMenuIsOpen(false);
+  const getSectionHref = (href: string) =>
+    location.pathname === "/" ? href : `/${href}`;
 
   return (
     <div className="fixed left-1/2 z-50 container mx-auto -translate-x-1/2 p-5">
@@ -47,11 +50,17 @@ export default function Header() {
               key={link.name.toLowerCase()}
               className="text-text-muted hover:text-text text-xl transition-colors duration-200"
             >
-              <a href={link.href}>{link.name}</a>
+              <a href={getSectionHref(link.href)}>{link.name}</a>
             </li>
           ))}
         </ul>
         <div className="flex items-center gap-2 md:gap-4">
+          <Link
+            to="/auth"
+            className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text hidden rounded-full border px-6 py-3 text-xl transition-all duration-200 active:scale-[0.975] lg:inline"
+          >
+            Sign In
+          </Link>
           <Link
             to="/demo"
             className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text hidden rounded-full border px-6 py-3 text-xl transition-all duration-200 active:scale-[0.975] lg:inline"
@@ -89,7 +98,7 @@ export default function Header() {
               return (
                 <div key={link.name.toLowerCase()} className="relative">
                   <a
-                    href={link.href}
+                    href={getSectionHref(link.href)}
                     onClick={handleMobileMenuLinkClick}
                     className="text-text hover:text-text-muted text-lg font-medium transition-colors"
                   >
@@ -101,6 +110,13 @@ export default function Header() {
             })}
           </nav>
           <div className="grid gap-3">
+            <Link
+              to="/auth"
+              onClick={handleMobileMenuLinkClick}
+              className="bg-background text-text-muted border-border/50 hover:text-text hover:bg-secondary inline-flex items-center justify-center rounded-full border px-5 py-3 text-base font-medium transition-all duration-200 active:scale-[0.975]"
+            >
+              Sign in
+            </Link>
             <Link
               to="/demo"
               onClick={handleMobileMenuLinkClick}

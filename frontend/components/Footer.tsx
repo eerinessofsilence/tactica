@@ -7,6 +7,7 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const NAVIGATION_LINKS = [
   { label: "Solutions", href: "#solutions" },
@@ -47,6 +48,9 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const location = useLocation();
+  const getSectionHref = (href: string) =>
+    location.pathname === "/" ? href : `/${href}`;
 
   return (
     <footer className="container mx-auto px-5 pb-8">
@@ -76,13 +80,13 @@ export default function Footer() {
               execution.
             </p>
 
-            <a
-              href="/demo"
+            <Link
+              to="/demo"
               className="bg-foreground border-border group hover:text-text hover:bg-secondary mt-8 inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition-all duration-200 active:scale-[0.975]"
             >
               Open demo workspace
               <ArrowUpRight className="group h-5 w-5 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -91,13 +95,13 @@ export default function Footer() {
 
           <div className="relative z-10">
             <div className="grid gap-5 lg:grid-cols-[auto_1fr] lg:items-center lg:justify-between">
-              <a href="/" className="inline-flex items-center">
+              <Link to="/" className="inline-flex items-center">
                 <img
                   src="/logo.png"
                   alt="Tactica"
                   className="aspect-8/3 w-30 lg:w-35"
                 />
-              </a>
+              </Link>
 
               <div className="flex justify-end lg:text-right">
                 <p className="text-text-muted/75 max-w-lg text-lg text-pretty">
@@ -141,7 +145,7 @@ export default function Footer() {
                     {NAVIGATION_LINKS.map((link) => (
                       <a
                         key={link.label}
-                        href={link.href}
+                        href={getSectionHref(link.href)}
                         className="text-text-muted hover:text-text inline-flex items-center gap-2 text-sm transition-colors duration-200"
                       >
                         <span>{link.label}</span>
@@ -180,7 +184,7 @@ export default function Footer() {
                 {FOOTER_LINKS.map((link) => (
                   <a
                     key={link.label}
-                    href={link.href}
+                    href={getSectionHref(link.href)}
                     className="text-text-muted hover:text-text text-sm transition-colors duration-200"
                   >
                     {link.label}

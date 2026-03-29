@@ -41,9 +41,8 @@ const SOCIAL_LINKS = [
 ];
 
 const FOOTER_LINKS = [
-  { label: "Pipeline visibility", href: "#features" },
-  { label: "Account planning", href: "#solutions" },
-  { label: "Rollout support", href: "#faq" },
+  { label: "Terms of Condition", href: "/terms-of-condition" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 
 export default function Footer() {
@@ -53,12 +52,12 @@ export default function Footer() {
     location.pathname === "/" ? href : `/${href}`;
 
   return (
-    <footer className="container mx-auto px-5 pb-8">
-      <div className="space-y-4">
-        <section
-          aria-labelledby="footer-cta-title"
-          className="border-border bg-background relative overflow-hidden rounded-[40px] border px-6 py-12 lg:px-8 lg:py-16"
-        >
+    <footer className="space-y-8">
+      <section
+        aria-labelledby="footer-cta-title"
+        className="container mx-auto px-5"
+      >
+        <div className="border-border bg-background relative container mx-auto overflow-hidden rounded-[40px] border px-6 py-12 lg:px-8 lg:py-16">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,104,34,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(200,157,79,0.18),transparent_34%),radial-gradient(circle_at_left,rgba(112,82,90,0.18),transparent_26%)]" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(15,54,65,0.07),transparent_30%,rgba(53,200,43,0.1)_100%)]" />
 
@@ -88,9 +87,11 @@ export default function Footer() {
               <ArrowUpRight className="group h-5 w-5 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <div className="border-border bg-foreground relative overflow-hidden rounded-[2.5rem] border p-6 lg:p-8">
+      <div className="bg-foreground relative overflow-hidden px-5 py-16">
+        <div className="container mx-auto px-5">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(255,157,79,0.06),transparent_26%)]" />
 
           <div className="relative z-10">
@@ -113,49 +114,39 @@ export default function Footer() {
 
             <div className="border-border/50 my-6 border-t" />
 
-            <div className="flex justify-between">
-              <div className="grid gap-96 md:grid-cols-2 lg:grid-cols-3">
-                <div>
-                  <p className="text-text text-lg font-semibold">Contact</p>
-                  <div className="mt-4 space-y-2">
-                    {CONTACT_ITEMS.map((item) => {
-                      const Icon = item.icon;
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_0.8fr_1fr]">
+              <div className="space-y-2">
+                {CONTACT_ITEMS.map((item) => {
+                  const Icon = item.icon;
 
-                      return (
-                        <a
-                          key={item.label}
-                          href={item.href}
-                          className="group flex items-center gap-3"
-                        >
-                          <div className="border-border/50 bg-foreground group-hover:bg-secondary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-200">
-                            <Icon className="text-text h-5 w-5" />
-                          </div>
-                          <p className="text-text-muted group-hover:text-text text-sm text-nowrap transition-colors duration-200">
-                            {item.label}
-                          </p>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-text text-lg font-semibold">Navigation</p>
-                  <div className="mt-4 flex gap-6">
-                    {NAVIGATION_LINKS.map((link) => (
-                      <a
-                        key={link.label}
-                        href={getSectionHref(link.href)}
-                        className="text-text-muted hover:text-text inline-flex items-center gap-2 text-sm transition-colors duration-200"
-                      >
-                        <span>{link.label}</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="group flex w-fit items-center gap-3"
+                    >
+                      <div className="border-border/50 bg-foreground group-hover:bg-secondary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-200">
+                        <Icon className="text-text h-5 w-5" />
+                      </div>
+                      <p className="text-text-muted group-hover:text-text text-sm text-nowrap transition-colors duration-200">
+                        {item.label}
+                      </p>
+                    </a>
+                  );
+                })}
               </div>
-
-              <div className="flex h-full flex-col items-end gap-5">
+              <div className="flex flex-col gap-3">
+                {NAVIGATION_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={getSectionHref(link.href)}
+                    className="text-text-muted hover:text-text w-fit items-center text-sm transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+              <div className="flex h-full flex-col gap-5 lg:items-end">
                 <div className="flex gap-2 xl:justify-end">
                   {SOCIAL_LINKS.map((link) => {
                     const Icon = link.icon;

@@ -23,7 +23,7 @@ const PLANS: {
     price: "$29",
     period: "/month",
     description:
-      "For early revenue teams replacing scattered pipeline reviews with one shared workspace.",
+      "For early revenue teams replacing scattered pipeline reviews with one shared workspace",
     highlight: "Best for first review and planning rhythms",
     cta: "Start with Starter",
     icon: Radar,
@@ -39,7 +39,7 @@ const PLANS: {
     price: "$79",
     period: "/month",
     description:
-      "For revenue teams coordinating pipeline risk, account strategy, and cross-functional execution every week.",
+      "For revenue teams coordinating pipeline risk, account strategy, and cross-functional execution every week",
     highlight: "Most teams running active reviews start here",
     cta: "Choose Ops",
     icon: Crosshair,
@@ -57,7 +57,7 @@ const PLANS: {
     price: "Custom",
     period: "annual",
     description:
-      "For organizations running strategic accounts across multiple teams, regions, and operating motions.",
+      "For organizations running strategic accounts across multiple teams, regions, and operating motions",
     highlight: "For governed multi-team rollouts",
     cta: "Talk to sales",
     icon: ShieldCheck,
@@ -72,9 +72,9 @@ const PLANS: {
 ];
 
 const BUY_SIGNALS = [
-  "Run pipeline reviews and next-step planning in the same workspace.",
-  "Keep account context, ownership, and follow-through attached to the record.",
-  "Add rollout support only when team complexity actually requires it.",
+  "Run pipeline reviews and next-step planning in the same workspace",
+  "Keep account context, ownership, and follow-through attached to the record",
+  "Add rollout support only when team complexity actually requires it",
 ];
 
 const COMPARISON_ROWS = [
@@ -110,7 +110,7 @@ export default function Pricing() {
       aria-labelledby="pricing-title"
       className="container mx-auto px-5"
     >
-      <div className="border-border/50 bg-foreground relative overflow-hidden rounded-[2.5rem] border p-6 shadow-white/15 lg:p-8">
+      <div className="border-border/50 bg-foreground relative overflow-hidden rounded-[2.5rem] border p-5">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(255,255,255,0.12),transparent_38%)]" />
 
         <div className="relative z-10 space-y-16">
@@ -119,12 +119,12 @@ export default function Pricing() {
               id="pricing-title"
               className="text-text mt-4 text-4xl font-bold text-balance md:text-5xl"
             >
-              Choose the workspace depth your revenue team needs now.
+              Choose the workspace depth your revenue team needs now
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-balance md:text-xl">
               Start with account and pipeline visibility, then add deeper
               planning, decision history, and rollout support as operating
-              complexity grows.
+              complexity grows
             </p>
           </div>
 

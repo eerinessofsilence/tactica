@@ -320,8 +320,8 @@ export default function Auth() {
     <section className="bg-background relative min-h-screen overflow-hidden p-5">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,var(--bg-light),transparent_28%),radial-gradient(circle_at_bottom_right,var(--bg),transparent_24%),linear-gradient(180deg,var(--bg-dark)_0%,var(--bg)_100%)]" />
 
-      <div className="border-border relative mx-auto flex max-w-420 rounded-[34px] border bg-[linear-gradient(180deg,var(--bg-light),var(--bg))] p-2 shadow-[0_24px_120px_rgba(0,0,0,0.55)]">
-        <div className="border-border/40 grid flex-1 overflow-hidden rounded-[30px] border xl:grid-cols-[1.3fr_0.7fr]">
+      <div className="border-border/50 relative mx-auto flex max-w-420 rounded-[34px] border bg-[linear-gradient(180deg,var(--bg-light),var(--bg))] p-2 shadow-[0_24px_120px_rgba(0,0,0,0.55)]">
+        <div className="border-border grid flex-1 overflow-hidden rounded-[30px] border xl:grid-cols-[1.3fr_0.7fr]">
           <div className="bg-foreground text-text relative p-10">
             <Link
               to="/"
@@ -363,7 +363,7 @@ export default function Auth() {
                       }
                       autoComplete="name"
                       placeholder="Ava Chen"
-                      className="border-border bg-background text-text placeholder:text-text-muted/55 focus:border-highlight focus:ring-highlight/10 w-full rounded-2xl border px-4 py-3 text-base transition-all duration-200 outline-none focus:ring-4"
+                      className="border-border bg-background text-text placeholder:text-text-muted/55 focus:ring-text-muted/25 w-full rounded-2xl border px-4 py-3 text-base transition-all duration-200 outline-none focus:ring-4"
                       required
                     />
                   </label>
@@ -395,7 +395,7 @@ export default function Auth() {
                         }
                         autoComplete="email"
                         placeholder="Provide your email address"
-                        className="border-border bg-background text-text placeholder:text-text-muted/55 focus:border-highlight focus:ring-highlight/10 w-full rounded-2xl border px-4 py-3 text-base transition-all duration-200 outline-none focus:ring-4"
+                        className="border-border bg-background text-text placeholder:text-text-muted/50 focus:ring-text-muted/25 w-full rounded-2xl border px-4 py-3 text-base transition-all duration-200 outline-none focus:ring-4"
                         required={showEmailField}
                         disabled={!showEmailField}
                       />
@@ -431,7 +431,7 @@ export default function Auth() {
                             : "new-password"
                         }
                         placeholder="Create your password"
-                        className="border-border bg-background text-text placeholder:text-text-muted/55 focus:border-highlight focus:ring-highlight/10 w-full rounded-2xl border px-4 py-3 text-base transition-all duration-200 outline-none focus:ring-4"
+                        className="border-border bg-background text-text placeholder:text-text-muted/55 focus:ring-text-muted/25 w-full rounded-2xl border px-4 py-3 text-base transition-all duration-200 outline-none focus:ring-4"
                         minLength={8}
                         required={showPasswordField}
                         disabled={!showPasswordField}
@@ -444,7 +444,7 @@ export default function Auth() {
                   <div
                     className={`mt-5 rounded-3xl border px-4 py-3.5 text-sm leading-6 ${
                       notice.tone === "success"
-                        ? "border-highlight/40 bg-secondary text-text"
+                        ? "border-border/50 bg-secondary text-text"
                         : "border-border bg-background text-text-muted"
                     }`}
                   >
@@ -472,9 +472,9 @@ export default function Auth() {
 
               <Link
                 to="/demo"
-                className="border-border bg-secondary text-text hover:bg-foreground mt-6 inline-flex w-full max-w-xl items-center justify-center gap-3 rounded-2xl border px-6 py-4 text-base font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-all duration-200 active:scale-[0.985]"
+                className="border-border/50 bg-secondary/25 text-text hover:bg-secondary/75 mt-6 inline-flex w-full max-w-xl items-center justify-center gap-3 rounded-2xl border px-6 py-4 text-base font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-all duration-200 active:scale-[0.985]"
               >
-                <span className="bg-foreground text-highlight flex h-9 w-9 items-center justify-center rounded-full">
+                <span className="bg-foreground text-text/50 flex h-9 w-9 items-center justify-center rounded-full">
                   <Sparkles className="h-4 w-4" />
                 </span>
                 Explore demo workspace first
@@ -485,14 +485,14 @@ export default function Auth() {
                 By signing up you agree to Tactica's{" "}
                 <a
                   href="#"
-                  className="text-text hover:text-highlight font-medium underline"
+                  className="text-text/90 hover:text-text-muted font-medium transition-colors duration-200"
                 >
                   Privacy Policy
                 </a>{" "}
                 and{" "}
                 <a
                   href="#"
-                  className="text-text hover:text-highlight font-medium underline"
+                  className="text-text/90 hover:text-text-muted font-medium transition-colors duration-200"
                 >
                   Terms of Service
                 </a>
@@ -529,7 +529,7 @@ export default function Auth() {
                 Get assistance via{" "}
                 <a
                   href="mailto:hello@tactica.app"
-                  className="text-text hover:text-highlight font-medium underline underline-offset-4"
+                  className="text-text hover:text-text-muted/75 font-medium underline transition-colors duration-200"
                 >
                   hello@tactica.app
                 </a>

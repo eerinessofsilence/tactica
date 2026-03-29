@@ -16,9 +16,7 @@ export default function DemoKpiCard({
   return (
     <article
       className={`rounded-[30px] border p-5 ${
-        accent
-          ? "border-border bg-gradient bg-linear-to-br"
-          : "border-border bg-foreground"
+        accent ? "border-border bg-secondary/50" : "border-border bg-foreground"
       }`}
     >
       <div className="flex items-start justify-between gap-4">

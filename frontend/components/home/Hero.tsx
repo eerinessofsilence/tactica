@@ -40,9 +40,9 @@ export default function Hero() {
           </p>
           <a
             href="/demo"
-            className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text hover:shadow-text/30 mt-4.5 rounded-full border px-6 py-3 text-xl transition-all duration-200 active:scale-[0.975] md:px-8 md:py-4 md:text-2xl"
+            className="bg-foreground hover:border-foreground text-text hover:text-background mt-4.5 rounded-full px-6 py-3 text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-200 hover:bg-[oklch(85%_0_0)] hover:shadow-[inset_0_2px_oklch(50%_0_0)] active:scale-[0.975] md:px-8 md:py-4 md:text-2xl"
           >
-            Open demo workspace
+            Get a Demo
           </a>
         </div>
       </div>

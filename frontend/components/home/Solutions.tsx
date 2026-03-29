@@ -13,21 +13,21 @@ const SOLUTION_CARDS: SolutionCard[] = [
     eyebrow: "CRM Foundation",
     title: "Keep pipeline and account context in one view",
     description:
-      "Track accounts, owners, risk, and open work in one shared workspace instead of stitching decisions together from CRM tabs and status docs.",
+      "Track accounts, owners, risk, and open work in one shared workspace instead of stitching decisions together from CRM tabs and status docs",
     icon: Radar,
   },
   {
     eyebrow: "Scenario Planning",
     title: "Compare the next move before the team commits",
     description:
-      "Model recovery, expansion, and fallback paths around the same account while the team can still weigh tradeoffs and change course.",
+      "Model recovery, expansion, and fallback paths around the same account while the team can still weigh tradeoffs and change course",
     icon: GitBranchPlus,
   },
   {
     eyebrow: "Shared Execution",
     title: "Coordinate follow-through across the team",
     description:
-      "Give sales, RevOps, customer, and leadership the same live plan so ownership, timing, and handoffs stay visible after the decision.",
+      "Give sales, RevOps, customer, and leadership the same live plan so ownership, timing, and handoffs stay visible after the decision",
     icon: Users,
   },
 ];
@@ -37,45 +37,37 @@ export default function Solutions() {
     <section
       id="solutions"
       aria-labelledby="solutions-title"
-      className="container mx-auto scroll-mt-32 px-5"
+      className="container mx-auto px-5"
     >
       <div className="relative isolate">
-        <div className="border-border bg-gradient relative rounded-[48px] border bg-linear-to-br p-6 lg:p-8">
+        <div className="border-border bg-foreground relative rounded-[48px] border bg-linear-to-br p-6 lg:p-8">
           <div className="pointer-events-none absolute inset-0 rounded-[48px] bg-[radial-gradient(circle_at_top_left,rgba(255,157,79,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(112,82,90,0.12),transparent_30%)]" />
           <div className="pointer-events-none absolute inset-0 rounded-[48px] bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-size-[52px_52px] opacity-35" />
 
           <div className="relative z-10">
             <div className="flex flex-col-reverse gap-y-8 lg:flex-row lg:justify-between">
-              <div className="max-w-2xl space-y-6">
-                <div className="border-border bg-foreground text-text-muted hidden items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-medium backdrop-blur-sm lg:inline-flex">
+              <div className="space-y-6">
+                <div className="border-border/50 bg-secondary/50 text-text-muted hidden items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-medium backdrop-blur-sm lg:inline-flex">
                   <Lightbulb
                     fill="#f7c178"
-                    className="h-5 w-5 text-[#f7c178]"
+                    className="h-5 w-5 text-[#f7c178]/75"
                   />
                   <span>Revenue Workspace</span>
                 </div>
 
-                <div className="flex flex-col items-center space-y-5 max-lg:justify-center max-lg:text-center lg:items-start">
+                <div className="flex flex-col items-center space-y-5 text-pretty max-lg:justify-center max-lg:text-center lg:items-start">
                   <h2
                     id="solutions-title"
-                    className="text-text max-w-md text-3xl font-semibold tracking-tight text-pretty md:text-4xl lg:leading-[0.95] xl:max-w-lg xl:text-5xl"
+                    className="text-text max-w-lg text-3xl font-semibold tracking-tight md:text-4xl lg:leading-[0.95] xl:max-w-xl xl:text-5xl"
                   >
-                    One workspace for pipeline reviews, account context, and next actions.
+                    One workspace for pipeline reviews, account context, and
+                    next actions
                   </h2>
-                  <p className="max-w-lg:max-w-md text-lg text-balance lg:max-w-xs xl:max-w-xl xl:text-xl xl:leading-8">
+                  <p className="max-w-md text-lg lg:max-w-2xl lg:text-xl xl:leading-8">
                     Tactica gives revenue teams a shared operating layer for
                     live accounts: pipeline visibility, scenario planning, and
-                    execution in one place.
+                    execution in one place
                   </p>
-                </div>
-
-                <div className="flex max-lg:justify-center">
-                  <a
-                    href="/demo"
-                    className="group text-text-muted hover:text-text hover:bg-secondary bg-foreground border-border hover:shadow-text/30 shadow-text/20 mt-3 inline-flex items-center gap-3 rounded-full border px-8 py-4 text-lg font-medium transition-all duration-200 active:scale-[0.975]"
-                  >
-                    Open demo workspace
-                  </a>
                 </div>
               </div>
               <div className="flex flex-col gap-3">

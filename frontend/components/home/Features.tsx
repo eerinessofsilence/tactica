@@ -108,9 +108,17 @@ export default function Features() {
                 What teams actually run inside Tactica
               </h2>
               <p className="max-w-xl text-lg text-pretty md:text-xl">
-                Not another CRM dashboard. A workspace for review, planning,
-                and follow-through.
+                Not another CRM dashboard. A workspace for review, planning, and
+                follow-through.
               </p>
+              <div className="flex max-lg:justify-center">
+                <a
+                  href="/demo"
+                  className="group text-text-muted hover:text-text hover:bg-secondary bg-foreground border-border hover:shadow-text/30 shadow-text/20 mt-3 inline-flex items-center gap-3 rounded-full border px-8 py-4 text-lg font-medium transition-all duration-200 active:scale-[0.975]"
+                >
+                  Open demo workspace
+                </a>
+              </div>
             </div>
           </div>
         </div>

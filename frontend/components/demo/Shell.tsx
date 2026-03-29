@@ -14,7 +14,7 @@ export default function DemoShell({
   const hasSidebar = sidebar != null;
 
   return (
-    <div className="bg-secondary/50 p-5">
+    <div className="dashboard bg-secondary/50 p-5">
       <div
         className={`border-border/30 bg-background mx-auto flex w-full flex-col gap-4 rounded-[40px] border p-5 xl:flex-row ${
           hasSidebar ? "max-w-400" : "max-w-7xl"

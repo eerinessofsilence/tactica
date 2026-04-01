@@ -32,23 +32,16 @@ export default function AccountsTable({
   onSelectAccount,
 }: AccountsTableProps) {
   return (
-    <section className="border-border bg-foreground rounded-[30px] border p-5">
+    <section className="border-border bg-foreground min-w-0 rounded-[30px] border p-5">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div className="space-y-3">
-          <h2 className="text-text text-3xl font-semibold max-lg:text-center">
-            Track the accounts, owners, and next steps driving pipeline.
-          </h2>
-          <p className="max-w-3xl text-sm leading-6 max-lg:text-center md:text-base">
-            This is the control layer of the workspace: the team sees live
-            stage, account health, value, ownership, and what happens next
-            without rebuilding context in separate docs.
-          </p>
-        </div>
+        <h2 className="text-text text-3xl font-semibold max-lg:text-center">
+          Track the accounts, owners, and next steps driving pipeline.
+        </h2>
       </div>
 
-      <div className="mt-6 overflow-x-auto overscroll-contain">
+      <div className="mt-6 min-w-0 overflow-x-auto overscroll-contain">
         <div className="min-w-245">
-          <div className="bg-secondary/25 text-text-muted grid grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] gap-3 rounded-[22px] px-4 py-3 text-xs font-semibold tracking-[0.22em] uppercase">
+          <div className="bg-secondary text-text-muted grid grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] gap-3 rounded-[22px] px-4 py-3 text-xs font-semibold tracking-[0.22em] uppercase">
             <p>Account</p>
             <p>Owner</p>
             <p>Stage</p>

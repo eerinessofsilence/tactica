@@ -1,4 +1,4 @@
-import { Bell, Mail, Search } from "lucide-react";
+import { Bell, Search } from "lucide-react";
 
 const iconButtonClass =
   "border-border/50 bg-secondary/25 text-text-muted hover:bg-secondary hover:text-text inline-flex h-11 w-11 items-center justify-center rounded-full border transition-colors duration-200 active:scale-[0.97]";
@@ -17,9 +17,6 @@ export default function DemoTopbar() {
 
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <button type="button" aria-label="Inbox" className={iconButtonClass}>
-            <Mail className="h-4 w-4" />
-          </button>
           <button
             type="button"
             aria-label="Notifications"

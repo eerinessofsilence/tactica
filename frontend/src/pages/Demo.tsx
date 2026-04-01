@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import AccountsTable, {
   type AccountRow,
 } from "../../components/demo/AccountsTable";
-import DemoShell from "../../components/demo/Shell";
 import DecisionLog, {
   type DecisionLogItem,
 } from "../../components/demo/DecisionLog";
@@ -363,93 +362,6 @@ const ACCOUNT_WORKSPACES: DemoAccountWorkspace[] = [
   },
 ];
 
-function getHealthClasses(health: AccountRow["health"]) {
-  if (health === "Healthy") {
-    return "border-border/25 bg-foreground";
-  }
-
-  if (health === "Watch") {
-    return "border-border/75 bg-secondary/25 text-text/75";
-  }
-
-  return "border-border bg-secondary text-text";
-}
-
-type DemoAccountSwitcherProps = {
-  workspaces: DemoAccountWorkspace[];
-  selectedAccountName: string;
-  onChange: (accountName: string) => void;
-};
-
-function DemoAccountSwitcher({
-  workspaces,
-  selectedAccountName,
-  onChange,
-}: DemoAccountSwitcherProps) {
-  return (
-    <section className="border-border bg-foreground rounded-[30px] border p-5">
-      <div className="flex flex-col gap-3 md:justify-between">
-        <div className="flex items-center justify-between">
-          <p className="text-xs font-medium tracking-widest uppercase">
-            Focused account
-          </p>
-          <div className="border-border bg-secondary text-text/75 w-fit rounded-full border px-1.5 py-0.5 text-xs font-medium tracking-widest text-nowrap uppercase">
-            4 live accounts
-          </div>
-        </div>
-        <p className="text-text text-lg font-semibold">
-          Switch the live workspace context without losing the dashboard.
-        </p>
-      </div>
-
-      <div className="mt-4 overflow-x-auto overscroll-contain">
-        <div className="flex min-w-max gap-2">
-          {workspaces.map((workspace) => {
-            const isActive = workspace.row.account === selectedAccountName;
-
-            return (
-              <button
-                key={workspace.row.account}
-                type="button"
-                onClick={() => onChange(workspace.row.account)}
-                aria-pressed={isActive}
-                className={`min-w-55 rounded-3xl border px-4 py-4 text-left transition-all duration-200 active:scale-[0.98] ${
-                  isActive
-                    ? "border-border bg-secondary"
-                    : "border-border/50 bg-foreground hover:border-border hover:bg-secondary"
-                }`}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-text text-sm font-semibold">
-                      {workspace.row.account}
-                    </p>
-                    <p className="text-text-muted mt-1 text-xs tracking-[0.12em] uppercase">
-                      {workspace.row.stage}
-                    </p>
-                  </div>
-                  <span
-                    className={`text-text-muted inline-flex rounded-full border px-1.5 py-0.5 text-[10px] uppercase ${getHealthClasses(
-                      workspace.row.health,
-                    )}`}
-                  >
-                    {workspace.row.health}
-                  </span>
-                </div>
-
-                <p className="mt-4 text-sm">
-                  {workspace.row.owner} ·{" "}
-                  <strong className="text-text">{workspace.row.value}</strong>
-                </p>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 type DemoSidebarProps = {
   activeView: DemoView;
   onChange: (view: DemoView) => void;
@@ -460,17 +372,14 @@ function DemoSidebar({ activeView, onChange }: DemoSidebarProps) {
   return (
     <div className="flex flex-col">
       <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-text text-lg font-semibold">Tactica</p>
-          <p className="text-text-muted text-sm">Revenue Workspace</p>
-        </div>
+        <p className="text-text text-lg font-semibold">Tactica</p>
         <div className="border-border bg-foreground text-text-muted inline-flex items-center gap-2 rounded-full border px-2 py-0.5 text-xs font-medium tracking-wider uppercase">
           <Sparkles className="h-3 w-3" />
           Demo
         </div>
       </div>
       <div className="flex flex-col">
-        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3 xl:grid-cols-1">
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3 2xl:grid-cols-1">
           {SIDEBAR_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = item.id === activeView;
@@ -510,17 +419,12 @@ function DemoSidebar({ activeView, onChange }: DemoSidebarProps) {
         </div>
 
         <div className="mt-4">
-          <p className="text-text text-lg font-semibold">Back to site</p>
-          <p className="text-text-muted mt-2 text-sm leading-6">
-            Return to the landing page after reviewing the dashboard shell and
-            workspace flow.
-          </p>
           <Link
             to="/"
             className="border-border bg-foreground hover:bg-secondary hover:text-text mt-3 inline-flex items-center justify-center gap-1 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors duration-200 active:scale-[0.975]"
           >
             <ArrowLeft className="h-4 w-4" />
-            Home
+            Back to site
           </Link>
         </div>
       </div>
@@ -541,8 +445,8 @@ export default function Demo() {
   const renderActiveView = () => {
     if (activeView === "overview") {
       return (
-        <div className="flex flex-col gap-4">
-          <div className="space-y-4">
+        <div className="flex min-w-0 flex-col gap-4">
+          <div className="min-w-0 space-y-4">
             <AccountsTable
               rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
               selectedAccount={selectedWorkspace.row.account}
@@ -550,7 +454,7 @@ export default function Demo() {
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="min-w-0 space-y-4">
             <NextActionsPanel
               accountName={selectedWorkspace.row.account}
               items={selectedWorkspace.nextActions}
@@ -566,16 +470,16 @@ export default function Demo() {
 
     if (activeView === "plan") {
       return (
-        <div className="space-y-4">
-          <div className="flex flex-col gap-4">
-            <div>
+        <div className="min-w-0 space-y-4">
+          <div className="flex min-w-0 flex-col gap-4">
+            <div className="min-w-0">
               <ScenarioPanel
                 accountName={selectedWorkspace.row.account}
                 items={selectedWorkspace.scenarios}
               />
             </div>
 
-            <div className="space-y-4">
+            <div className="min-w-0 space-y-4">
               <NextActionsPanel
                 accountName={selectedWorkspace.row.account}
                 items={selectedWorkspace.nextActions}
@@ -597,7 +501,7 @@ export default function Demo() {
     }
 
     return (
-      <div className="space-y-4">
+      <div className="min-w-0 space-y-4">
         <DecisionLog
           accountName={selectedWorkspace.row.account}
           items={selectedWorkspace.decisionLog}
@@ -616,122 +520,62 @@ export default function Demo() {
   };
 
   return (
-    <DemoShell
-      sidebar={
-        <DemoSidebar
-          activeView={activeView}
-          onChange={setActiveView}
-          selectedWorkspace={selectedWorkspace}
-        />
-      }
-      topbar={<DemoTopbar />}
-    >
-      <div className="space-y-4 lg:space-y-5">
-        <section className="">
-          <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
-            <div className="flex max-w-3xl flex-col max-lg:items-center">
-              <div className="border-border bg-foreground inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold tracking-[0.16em] uppercase">
-                <Sparkles className="h-3.5 w-3.5" />
-                Sales Command Center
-              </div>
-              <h1 className="text-text mt-4 text-4xl font-semibold tracking-tight max-lg:text-center md:text-5xl">
-                Revenue dashboard
-              </h1>
-              <p className="text-text-muted mt-3 max-w-3xl text-sm leading-7 max-lg:text-center md:text-lg">
-                Review the pipeline, pressure-test scenarios, and turn account
-                context into actions without leaving the same workspace.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3 text-nowrap sm:flex-row xl:flex-col">
-              <button
-                type="button"
-                className="border-border bg-secondary text-text hover:bg-foreground hover:text-text-muted inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
-              >
-                <Plus className="h-4 w-4" />
-                Run Review
-              </button>
-              <button
-                type="button"
-                className="border-border bg-foreground text-text-muted hover:bg-secondary hover:text-text inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
-              >
-                <Download className="h-4 w-4" />
-                Import Data
-              </button>
-            </div>
-          </div>
-
-          <section className="border-border bg-secondary/25 mt-6 rounded-[28px] border p-5">
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="space-y-3">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-text text-2xl font-semibold">
-                    {selectedWorkspace.row.account}
-                  </p>
-                  <span
-                    className={`inline-flex rounded-full border px-1.5 py-0.5 text-xs font-medium uppercase ${getHealthClasses(
-                      selectedWorkspace.row.health,
-                    )}`}
-                  >
-                    {selectedWorkspace.row.health}
-                  </span>
-                </div>
-                <p className="text-sm leading-6 md:text-base">
-                  {selectedWorkspace.summary}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4 grid gap-3 md:grid-cols-2">
-              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
-                <p className="text-xs tracking-widest uppercase">Owner</p>
-                <p className="text-text mt-1 font-medium lg:text-lg">
-                  {selectedWorkspace.row.owner}
-                </p>
-              </div>
-              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
-                <p className="text-xs tracking-widest uppercase">Stage</p>
-                <p className="text-text mt-1 font-medium lg:text-lg">
-                  {selectedWorkspace.row.stage}
-                </p>
-              </div>
-              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
-                <p className="text-xs tracking-widest uppercase">Value</p>
-                <p className="text-text mt-1 font-medium lg:text-lg">
-                  {selectedWorkspace.row.value}
-                </p>
-              </div>
-              <div className="border-border/50 bg-foreground rounded-[22px] border px-4 py-3">
-                <p className="text-xs tracking-widest uppercase">Next step</p>
-                <p className="text-text mt-1 font-medium lg:text-lg">
-                  {selectedWorkspace.row.nextStep}
-                </p>
-              </div>
-            </div>
-          </section>
-        </section>
-
-        <DemoAccountSwitcher
-          workspaces={ACCOUNT_WORKSPACES}
-          selectedAccountName={selectedWorkspace.row.account}
-          onChange={setSelectedAccountName}
-        />
-
-        <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-4">
-          {KPI_ITEMS.map((item, index) => (
-            <DemoKpiCard
-              key={item.label}
-              label={item.label}
-              value={item.value}
-              note={item.note}
-              trend={item.trend}
-              accent={index === 0}
-            />
-          ))}
+    <div className="dashboard bg-background/90 grid min-w-0 gap-3 overflow-x-hidden 2xl:grid-cols-[18.5rem_minmax(0,1fr)]">
+      <div className="relative min-w-0">
+        <div className="h-fit w-full shrink-0 p-5 2xl:sticky 2xl:top-5">
+          <DemoSidebar
+            activeView={activeView}
+            onChange={setActiveView}
+            selectedWorkspace={selectedWorkspace}
+          />
         </div>
-
-        {renderActiveView()}
       </div>
-    </DemoShell>
+      <div className="bg-background flex flex-col p-5">
+        <div className="flex min-w-0 flex-1 flex-col gap-4">
+          <DemoTopbar />
+          <div className="min-w-0 space-y-4 lg:space-y-5">
+            <section className="flex flex-col gap-5 2xl:flex-row 2xl:items-start 2xl:justify-between">
+              <div className="flex max-w-3xl flex-col max-lg:items-center">
+                <h1 className="text-text mt-4 text-4xl font-semibold tracking-tight max-lg:text-center md:text-5xl">
+                  Revenue dashboard
+                </h1>
+              </div>
+
+              <div className="flex flex-col gap-3 text-nowrap sm:flex-row 2xl:flex-col">
+                <button
+                  type="button"
+                  className="border-border bg-secondary text-text hover:bg-foreground hover:text-text-muted inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add Company
+                </button>
+                <button
+                  type="button"
+                  className="border-border bg-foreground text-text-muted hover:bg-secondary hover:text-text inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
+                >
+                  <Download className="h-4 w-4" />
+                  Import Data
+                </button>
+              </div>
+            </section>
+
+            <div className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
+              {KPI_ITEMS.map((item, index) => (
+                <DemoKpiCard
+                  key={item.label}
+                  label={item.label}
+                  value={item.value}
+                  note={item.note}
+                  trend={item.trend}
+                  accent={index === 0}
+                />
+              ))}
+            </div>
+
+            {renderActiveView()}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

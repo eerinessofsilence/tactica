@@ -6,7 +6,7 @@ import FAQ from "../../components/home/FAQ";
 
 export default function Home() {
   return (
-    <main className="bg-background relative min-h-screen space-y-16 lg:space-y-32">
+    <main className="bg-background relative min-h-screen space-y-32">
       <Hero />
       <Solutions />
       <Features />

@@ -100,21 +100,23 @@ export default function Features() {
         </div>
         <div className="space-y-8 lg:space-y-16 xl:pt-4">
           <div className="flex max-xl:justify-center max-xl:text-center xl:sticky xl:top-32">
-            <div className="space-y-3">
-              <h2
-                id="features-title"
-                className="text-text max-w-xl text-4xl font-bold text-balance md:text-5xl"
-              >
-                What teams actually run inside Tactica
-              </h2>
-              <p className="max-w-xl text-lg text-pretty md:text-xl">
-                Not another CRM dashboard. A workspace for review, planning, and
-                follow-through.
-              </p>
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <h2
+                  id="features-title"
+                  className="text-text max-w-xl text-4xl font-bold text-balance md:text-5xl"
+                >
+                  What teams actually run inside Tactica
+                </h2>
+                <p className="max-w-xl text-lg text-pretty md:text-xl">
+                  Not another CRM dashboard. A workspace for review, planning,
+                  and follow-through.
+                </p>
+              </div>
               <div className="flex max-lg:justify-center">
                 <a
                   href="/demo"
-                  className="group text-text-muted hover:text-text hover:bg-secondary bg-foreground border-border hover:shadow-text/30 shadow-text/20 mt-3 inline-flex items-center gap-3 rounded-full border px-8 py-4 text-lg font-medium transition-all duration-200 active:scale-[0.975]"
+                  className="bg-secondary/10 text-text hover:text-background rounded-full px-6 py-3 text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975]"
                 >
                   Open demo workspace
                 </a>

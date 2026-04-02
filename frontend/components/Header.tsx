@@ -57,13 +57,13 @@ export default function Header() {
         <div className="flex items-center gap-2 md:gap-4">
           <Link
             to="/auth"
-            className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text hidden rounded-full border px-6 py-3 text-xl transition-all duration-200 active:scale-[0.975] lg:inline"
+            className="bg-secondary/10 text-text hover:text-background hidden rounded-full px-6 py-3 text-center text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975] lg:flex"
           >
             Sign In
           </Link>
           <Link
             to="/demo"
-            className="bg-foreground border-border/50 hover:bg-secondary text-text-muted hover:text-text hidden rounded-full border px-6 py-3 text-xl transition-all duration-200 active:scale-[0.975] lg:inline"
+            className="bg-secondary/10 text-text hover:text-background hidden rounded-full px-6 py-3 text-center text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975] lg:flex"
           >
             See live demo
           </Link>
@@ -72,12 +72,12 @@ export default function Header() {
             onClick={handleMobileMenuToggle}
             aria-expanded={mobileMenuIsOpen}
             aria-controls={mobileMenuId}
-            className="border-border/50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border transition-all duration-200 will-change-transform active:translate-y-0.5 active:scale-[0.93] lg:hidden"
+            className="bg-secondary/25 text-text flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-200 will-change-transform active:translate-y-0.5 active:scale-[0.93] lg:hidden"
           >
             {mobileMenuIsOpen ? (
-              <X className="text-text h-6 w-6" />
+              <X className="h-6 w-6" />
             ) : (
-              <Menu className="text-text h-6 w-6" />
+              <Menu className="h-6 w-6" />
             )}
           </button>
         </div>
@@ -109,18 +109,18 @@ export default function Header() {
               );
             })}
           </nav>
-          <div className="grid gap-3">
+          <div className="flex flex-col gap-2">
             <Link
               to="/auth"
               onClick={handleMobileMenuLinkClick}
-              className="bg-background text-text-muted border-border/50 hover:text-text hover:bg-secondary inline-flex items-center justify-center rounded-full border px-5 py-3 text-base font-medium transition-all duration-200 active:scale-[0.975]"
+              className="bg-secondary/10 text-text hover:text-background rounded-full px-6 py-3 text-center text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975]"
             >
               Sign in
             </Link>
             <Link
               to="/demo"
               onClick={handleMobileMenuLinkClick}
-              className="bg-background text-text-muted border-border/50 hover:text-text hover:bg-secondary inline-flex items-center justify-center rounded-full border px-5 py-3 text-base font-medium transition-all duration-200 active:scale-[0.975]"
+              className="bg-secondary/10 text-text hover:text-background rounded-full px-6 py-3 text-center text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975]"
             >
               See live demo
             </Link>

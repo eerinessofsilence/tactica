@@ -30,17 +30,19 @@ export default function Hero() {
       />
       <div className="relative z-10 container mx-auto flex min-h-screen items-center justify-center">
         <div className="mt-12 flex flex-col items-center justify-center space-y-5 lg:mt-24">
-          <h1 className="text-text text-center text-4xl font-bold md:text-5xl lg:text-6xl">
-            Review the pipeline. <br /> Choose the next move. Stay aligned.
-          </h1>
-          <p className="max-w-xl text-center text-balance md:max-w-3xl md:text-lg lg:text-xl">
-            Tactica is the revenue workspace where teams review accounts,
-            compare scenarios, and turn pipeline decisions into clear next
-            actions.
-          </p>
+          <div className="flex flex-col items-center space-y-3 text-center">
+            <h1 className="text-text text-4xl font-bold md:text-5xl lg:text-6xl">
+              Review the pipeline. <br /> Choose the next move. Stay aligned.
+            </h1>
+            <p className="max-w-xl text-balance md:max-w-3xl md:text-lg lg:text-xl">
+              Tactica is the revenue workspace where teams review accounts,
+              compare scenarios, and turn pipeline decisions into clear next
+              actions.
+            </p>
+          </div>
           <a
             href="/demo"
-            className="bg-foreground hover:border-foreground text-text hover:text-background mt-4.5 rounded-full px-6 py-3 text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-200 hover:bg-[oklch(85%_0_0)] hover:shadow-[inset_0_2px_oklch(50%_0_0)] active:scale-[0.975] md:px-8 md:py-4 md:text-2xl"
+            className="bg-foreground text-text hover:text-background rounded-full px-6 py-3 text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975] md:px-8 md:py-4 md:text-2xl"
           >
             Get a Demo
           </a>

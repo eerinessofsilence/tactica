@@ -52,7 +52,7 @@ export default function Footer() {
     location.pathname === "/" ? href : `/${href}`;
 
   return (
-    <footer className="space-y-8">
+    <footer className="space-y-32">
       <section
         aria-labelledby="footer-cta-title"
         className="container mx-auto px-5"
@@ -61,27 +61,29 @@ export default function Footer() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,104,34,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(200,157,79,0.18),transparent_34%),radial-gradient(circle_at_left,rgba(112,82,90,0.18),transparent_26%)]" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(15,54,65,0.07),transparent_30%,rgba(53,200,43,0.1)_100%)]" />
 
-          <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
-            <h2
-              id="footer-cta-title"
-              className="text-text mt-6 max-w-3xl text-4xl font-semibold tracking-tight text-balance md:text-5xl"
-            >
-              Ready to{" "}
-              <strong className="font-semibold text-[#FF8101]">
-                run accounts
-              </strong>
-              , pipeline, and next steps in one workspace?
-            </h2>
+          <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center space-y-6 text-center">
+            <div className="space-y-3">
+              <h2
+                id="footer-cta-title"
+                className="text-text mt-6 max-w-3xl text-4xl font-semibold tracking-tight text-balance md:text-5xl"
+              >
+                Ready to{" "}
+                <strong className="font-semibold text-[#FF8101]">
+                  run accounts
+                </strong>
+                , pipeline, and next steps in one workspace?
+              </h2>
 
-            <p className="mt-4 max-w-2xl text-base text-balance md:text-lg">
-              Replace CRM-plus-spreadsheet drift with one workspace for account
-              context, pipeline reviews, scenario planning, and coordinated
-              execution.
-            </p>
+              <p className="max-w-2xl text-base text-balance md:text-lg">
+                Replace CRM-plus-spreadsheet drift with one workspace for
+                account context, pipeline reviews, scenario planning, and
+                coordinated execution.
+              </p>
+            </div>
 
             <Link
               to="/demo"
-              className="bg-foreground border-border group hover:text-text hover:bg-secondary mt-8 inline-flex items-center gap-2 rounded-full border px-6 py-3 font-semibold transition-all duration-200 active:scale-[0.975]"
+              className="bg-secondary/10 hover:border-foreground text-text hover:text-background inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-xl whitespace-nowrap shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975]"
             >
               Open demo workspace
               <ArrowUpRight className="group h-5 w-5 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -114,7 +116,7 @@ export default function Footer() {
 
             <div className="border-border/50 my-6 border-t" />
 
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_0.8fr_1fr]">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               <div className="space-y-2">
                 {CONTACT_ITEMS.map((item) => {
                   const Icon = item.icon;
@@ -135,7 +137,7 @@ export default function Footer() {
                   );
                 })}
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex gap-3">
                 {NAVIGATION_LINKS.map((link) => (
                   <a
                     key={link.label}

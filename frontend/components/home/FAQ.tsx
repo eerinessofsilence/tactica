@@ -46,26 +46,28 @@ export default function FAQ() {
     <section
       id="faq"
       aria-labelledby="faq-title"
-      className="container mx-auto px-5 pb-8 lg:pb-16"
+      className="container mx-auto px-5 pb-32"
     >
-      <div className="grid gap-8 xl:grid-cols-[0.72fr_1.28fr]">
+      <div className="grid gap-8 xl:grid-cols-[0.8fr_1.2fr]">
         <div className="max-xl:flex max-xl:justify-center max-xl:text-center xl:sticky xl:top-32 xl:self-start">
-          <div>
-            <h2
-              id="faq-title"
-              className="text-text max-w-xl text-4xl font-bold text-balance md:text-5xl"
-            >
-              The questions teams ask before they adopt Tactica
-            </h2>
-            <p className="mt-4 max-w-xl text-lg text-balance md:text-xl">
-              Most evaluation friction is about CRM overlap, migration,
-              adoption, and whether the workspace still helps when accounts,
-              owners, and priorities keep shifting.
-            </p>
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <h2
+                id="faq-title"
+                className="text-text max-w-xl text-4xl font-bold text-balance md:text-5xl"
+              >
+                The questions teams ask before they adopt Tactica
+              </h2>
+              <p className="max-w-md text-lg text-pretty md:text-xl">
+                Most evaluation friction is about CRM overlap, migration,
+                adoption, and whether the workspace still helps when accounts,
+                owners, and priorities keep shifting
+              </p>
+            </div>
 
             <a
               href="#pricing"
-              className="border-border bg-foreground hover:bg-secondary hover:text-text mt-6 inline-flex items-center gap-2 rounded-full border px-6 py-3 transition-colors duration-200"
+              className="bg-secondary/10 hover:border-foreground text-text hover:text-background inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-xl whitespace-nowrap shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975]"
             >
               Compare revenue plans
               <ArrowUpRight className="h-4 w-4" />
@@ -105,7 +107,7 @@ export default function FAQ() {
                       }`}
                     >
                       <span className="min-h-0">
-                        <span className="text-text-muted block max-w-2xl px-3 text-sm text-balance md:text-base">
+                        <span className="text-text-muted block max-w-xl px-3 text-sm text-pretty md:text-base">
                           {item.answer}
                         </span>
                       </span>

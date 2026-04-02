@@ -21,7 +21,7 @@ const PLANS: {
   {
     name: "Starter",
     price: "$29",
-    period: "/month",
+    period: "/ month",
     description:
       "For early revenue teams replacing scattered pipeline reviews with one shared workspace",
     highlight: "Best for first review and planning rhythms",
@@ -37,7 +37,7 @@ const PLANS: {
   {
     name: "Ops",
     price: "$79",
-    period: "/month",
+    period: "/ month",
     description:
       "For revenue teams coordinating pipeline risk, account strategy, and cross-functional execution every week",
     highlight: "Most teams running active reviews start here",
@@ -113,31 +113,32 @@ export default function Pricing() {
       <div className="border-border/50 bg-foreground relative overflow-hidden rounded-[2.5rem] border p-5">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(255,255,255,0.12),transparent_38%)]" />
 
-        <div className="relative z-10 space-y-16">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2
-              id="pricing-title"
-              className="text-text mt-4 text-4xl font-bold text-balance md:text-5xl"
-            >
-              Choose the workspace depth your revenue team needs now
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-balance md:text-xl">
-              Start with account and pipeline visibility, then add deeper
-              planning, decision history, and rollout support as operating
-              complexity grows
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            {BUY_SIGNALS.map((signal) => (
-              <div
-                key={signal}
-                className="border-border bg-foreground flex max-w-sm items-center gap-3 rounded-full border px-6 py-3"
+        <div className="relative z-10 space-y-24">
+          <div className="flex items-center">
+            <div className="space-y-3">
+              <h2
+                id="pricing-title"
+                className="text-text text-4xl font-bold md:text-5xl"
               >
-                <Check className="h-6 w-6 shrink-0 text-[#13C750]" />
-                <p className="max-w-[85%] text-sm text-pretty">{signal}</p>
-              </div>
-            ))}
+                Choose the depth your team needs now
+              </h2>
+              <p className="text-lg text-pretty md:text-xl">
+                Start with account and pipeline visibility, then add deeper
+                planning, decision history, and rollout support as operating
+                complexity grows
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-end gap-2">
+              {BUY_SIGNALS.map((signal, index) => (
+                <div
+                  key={signal}
+                  className={`border-border/50 bg-foreground flex max-w-sm items-center gap-3 rounded-full border px-4 py-2 ${index == 1 ? "mr-5" : index == 2 ? "mr-10" : ""}`}
+                >
+                  <Check className="h-6 w-6 shrink-0 text-[#13C750]" />
+                  <p className="max-w-[85%] text-sm text-pretty">{signal}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="grid gap-4 lg:grid-cols-3 lg:items-start">
@@ -147,8 +148,8 @@ export default function Pricing() {
                   key={plan.name}
                   className={`relative overflow-hidden rounded-4xl border p-5 ${
                     plan.featured
-                      ? "border-border bg-foreground shadow-[0_18px_60px_rgba(0,0,0,0.35)] lg:-mt-6"
-                      : "border-border/50 bg-foreground shadow-white/20"
+                      ? "border-border bg-secondary/10 shadow-[0_5px_15px_rgba(255,255,255,0.05)] lg:-mt-6"
+                      : "border-border/50 bg-secondary/10"
                   }`}
                 >
                   {plan.featured ? (
@@ -157,8 +158,8 @@ export default function Pricing() {
                   <div
                     className={`pointer-events-none absolute inset-x-0 top-0 h-28 ${
                       plan.featured
-                        ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.16),transparent)]"
-                        : "bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]"
+                        ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]"
+                        : "bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent)]"
                     }`}
                   />
 
@@ -173,15 +174,15 @@ export default function Pricing() {
                     </div>
 
                     <div className="mt-6 space-y-3">
-                      <div className="flex items-end gap-2">
+                      <div className="flex items-center gap-2">
                         <p className="text-text text-4xl font-bold">
                           {plan.price}
                         </p>
-                        <p className="text-text-muted pb-1 text-sm tracking-[0.18em] uppercase">
+                        <p className="text-text-muted text-sm tracking-widest">
                           {plan.period}
                         </p>
                       </div>
-                      <p className="text-sm text-balance md:text-base">
+                      <p className="text-sm text-pretty md:text-base">
                         {plan.description}
                       </p>
                     </div>
@@ -190,7 +191,7 @@ export default function Pricing() {
                       {plan.features.map((feature) => (
                         <li
                           key={feature}
-                          className="border-border/20 bg-foreground text-text flex items-center gap-3 rounded-full border px-5 py-2.5 text-sm"
+                          className="border-border/25 bg-foreground text-text flex items-center gap-3 rounded-full border px-5 py-2.5 text-sm"
                         >
                           <Check className="h-4 w-4 shrink-0 text-[#13C750]" />
                           <span>{feature}</span>
@@ -200,14 +201,14 @@ export default function Pricing() {
 
                     <a
                       href="#faq"
-                      className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-all duration-200 active:scale-[0.975] ${
+                      className={`mt-6 inline-flex items-center justify-center gap-3 rounded-full px-6 py-3 text-center text-xl shadow-[inset_0_2px_oklch(50%_0_0)] transition-all duration-300 hover:bg-[oklch(85%_0_0)] active:scale-[0.975] ${
                         plan.featured
-                          ? "border-border bg-secondary text-text hover:bg-foreground hover:text-text-muted"
-                          : "border-border hover:text-text bg-foreground hover:bg-secondary"
+                          ? "text-secondary hover:text-text hover:bg-foreground bg-[oklch(85%_0_0)] transition-all duration-300"
+                          : "hover:text-background bg-foreground hover:bg-[oklch(85%_0_0)]"
                       }`}
                     >
                       {plan.cta}
-                      <ArrowUpRight className="h-4 w-4" />
+                      <ArrowUpRight className="mt-1 h-5 w-5" />
                     </a>
                   </div>
                 </article>

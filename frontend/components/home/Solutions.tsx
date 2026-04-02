@@ -45,7 +45,7 @@ export default function Solutions() {
           <div className="pointer-events-none absolute inset-0 rounded-[48px] bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-size-[52px_52px] opacity-35" />
 
           <div className="relative z-10">
-            <div className="flex flex-col-reverse gap-y-8 lg:flex-row lg:justify-between">
+            <div className="flex flex-col-reverse gap-6 lg:flex-row lg:justify-between">
               <div className="space-y-6">
                 <div className="border-border/50 bg-secondary/50 text-text-muted hidden items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-medium backdrop-blur-sm lg:inline-flex">
                   <Lightbulb
@@ -90,7 +90,7 @@ export default function Solutions() {
                     >
                       <div className="relative z-10 flex h-full flex-col space-y-1.5">
                         <div className="flex items-start justify-between gap-4">
-                          <h3 className="text-text max-w-md text-3xl font-semibold tracking-tight text-balance">
+                          <h3 className="text-text max-w-md text-3xl font-semibold tracking-tight text-pretty 2xl:max-w-3xl">
                             {card.title}
                           </h3>
                           <div className="bg-foreground shadow-text/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
@@ -98,7 +98,7 @@ export default function Solutions() {
                           </div>
                         </div>
 
-                        <p className="text-text-muted max-w-md leading-5 text-pretty">
+                        <p className="text-text-muted max-w-md leading-5 text-pretty 2xl:max-w-xl">
                           {card.description}
                         </p>
                       </div>

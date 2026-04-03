@@ -13,14 +13,14 @@ type NextActionsPanelProps = {
 
 function getPriorityClasses(priority: NextActionItem["priority"]) {
   if (priority === "Low") {
-    return "border-border bg-foreground text-text";
+    return "border-border/50 bg-[oklch(75%_0.15_120)]/25";
   }
 
   if (priority === "Medium") {
-    return "border-border bg-secondary text-text";
+    return "border-border/50 bg-[oklch(75%_0.15_40)]/50";
   }
 
-  return "border-border bg-background text-text";
+  return "border-border/50 bg-[oklch(75%_0.15_20)]/75";
 }
 
 export default function NextActionsPanel({
@@ -28,27 +28,21 @@ export default function NextActionsPanel({
   items,
 }: NextActionsPanelProps) {
   return (
-    <section className="border-border bg-foreground h-full rounded-[30px] border p-5">
-      <h2 className="text-text text-3xl font-semibold max-lg:text-center">
-        Turn pipeline visibility into clear ownership.
-      </h2>
-      <p className="mt-3 leading-6 max-lg:text-center">
-        The action panel translates account context and scenario choices into
-        explicit follow-through so the team knows what happens next.
-      </p>
-      <div className="flex max-lg:justify-center">
-        <div className="border-border bg-secondary mt-4 inline-flex rounded-full border px-1.5 py-0.5">
-          <p className="text-text text-xs font-medium tracking-widest uppercase">
-            Active actions for {accountName}
-          </p>
-        </div>
+    <section className="bg-foreground h-full space-y-6 rounded-[30px] p-5">
+      <div className="flex items-center justify-between">
+        <h2 className="text-text text-3xl font-semibold max-lg:text-center">
+          Turn pipeline visibility into clear ownership
+        </h2>
+        <p className="border-border/25 bg-secondary/25 text-text-muted w-fit rounded-full border px-3 py-1 font-medium">
+          {accountName}
+        </p>
       </div>
 
-      <div className="mt-6 space-y-3">
+      <div className="grid grid-cols-2 gap-3">
         {items.map((item) => (
           <article
             key={`${item.title}-${item.owner}`}
-            className="border-border/50 bg-foreground rounded-3xl border p-5"
+            className="border-border/50 bg-foreground space-y-8 rounded-3xl border p-5"
           >
             <div className="flex items-start justify-between gap-3">
               <p className="text-text text-sm font-semibold md:text-base">
@@ -63,30 +57,32 @@ export default function NextActionsPanel({
               </span>
             </div>
 
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              <div className="border-border/50 bg-secondary/25 rounded-[20px] border px-3 py-3">
-                <p className="text-text-muted text-[11px] font-semibold tracking-[0.16em] uppercase">
-                  Owner
-                </p>
-                <p className="text-text mt-2 text-sm font-medium">
-                  {item.owner}
-                </p>
-              </div>
+            <div className="flex justify-center">
+              <div className="flex items-center gap-8">
+                <div className="space-y-2 text-center">
+                  <p className="text-text-muted/75 text-sm font-medium tracking-wide uppercase">
+                    Owner
+                  </p>
+                  <p className="text-text font-semibold">{item.owner}</p>
+                </div>
 
-              <div className="border-border/50 bg-secondary/25 rounded-[20px] border px-3 py-3">
-                <p className="text-text-muted text-[11px] font-semibold tracking-[0.16em] uppercase">
-                  Due
-                </p>
-                <p className="text-text mt-2 text-sm font-medium">{item.due}</p>
-              </div>
+                <span className="bg-text-muted/25 h-6 w-px"></span>
 
-              <div className="border-border/50 bg-secondary/25 rounded-[20px] border px-3 py-3">
-                <p className="text-text-muted text-[11px] font-semibold tracking-[0.16em] uppercase">
-                  Context
-                </p>
-                <p className="text-text mt-2 text-sm font-medium">
-                  {item.context}
-                </p>
+                <div className="space-y-2 text-center">
+                  <p className="text-text-muted/75 text-sm font-medium tracking-wide uppercase">
+                    Due
+                  </p>
+                  <p className="text-text font-semibold">{item.due}</p>
+                </div>
+
+                <span className="bg-text-muted/25 h-6 w-px"></span>
+
+                <div className="space-y-2 text-center">
+                  <p className="text-text-muted/75 text-sm font-medium tracking-wide uppercase">
+                    Context
+                  </p>
+                  <p className="text-text font-semibold">{item.context}</p>
+                </div>
               </div>
             </div>
           </article>

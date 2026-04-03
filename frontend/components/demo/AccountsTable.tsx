@@ -16,14 +16,14 @@ type AccountsTableProps = {
 
 function getHealthClasses(health: AccountRow["health"]) {
   if (health === "Healthy") {
-    return "border-border bg-foreground text-text";
+    return "border-border/50 bg-[oklch(75%_0.15_120)]/25";
   }
 
   if (health === "Watch") {
-    return "border-border bg-secondary text-text";
+    return "border-border/50 bg-[oklch(75%_0.15_40)]/50";
   }
 
-  return "border-border bg-background text-text";
+  return "border-border/50 bg-[oklch(75%_0.15_20)]/75";
 }
 
 export default function AccountsTable({
@@ -32,10 +32,10 @@ export default function AccountsTable({
   onSelectAccount,
 }: AccountsTableProps) {
   return (
-    <section className="border-border bg-foreground min-w-0 rounded-[30px] border p-5">
+    <section className="bg-foreground min-w-0 rounded-[30px] p-5">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <h2 className="text-text text-3xl font-semibold max-lg:text-center">
-          Track the accounts, owners, and next steps driving pipeline.
+          Track the accounts, owners, and next steps driving pipeline
         </h2>
       </div>
 
@@ -61,10 +61,10 @@ export default function AccountsTable({
                   type="button"
                   onClick={() => onSelectAccount?.(row.account)}
                   aria-pressed={isSelected}
-                  className={`grid w-full grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] items-center gap-3 rounded-3xl border p-5 text-left transition-all duration-200 active:scale-[0.99] ${
+                  className={`grid w-full cursor-pointer grid-cols-[1.25fr_0.85fr_0.85fr_0.8fr_0.7fr_1.4fr_0.6fr] items-center gap-3 rounded-3xl border p-5 text-left transition-all duration-300 active:scale-[0.975] ${
                     isSelected
                       ? "border-border bg-secondary"
-                      : "border-border/50 bg-foreground hover:border-border hover:bg-secondary/25"
+                      : "border-border/50 bg-foreground hover:border-border/75 hover:bg-secondary/50"
                   }`}
                 >
                   <div>
@@ -83,7 +83,7 @@ export default function AccountsTable({
 
                   <div>
                     <span
-                      className={`inline-flex rounded-full border px-1.5 py-0.5 text-xs font-medium uppercase ${getHealthClasses(
+                      className={`text-text inline-flex rounded-full border px-1.5 py-0.5 text-xs font-medium uppercase ${getHealthClasses(
                         row.health,
                       )}`}
                     >

@@ -45,7 +45,7 @@ const KPI_ITEMS = [
     label: "Scenario paths",
     value: "8",
     note: "Recovery, expansion, and close paths under review",
-    trend: "2 options attached to every account",
+    trend: "2 options to every account",
   },
   {
     label: "Accounts at risk",
@@ -447,14 +447,6 @@ export default function Demo() {
       return (
         <div className="flex min-w-0 flex-col gap-4">
           <div className="min-w-0 space-y-4">
-            <AccountsTable
-              rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
-              selectedAccount={selectedWorkspace.row.account}
-              onSelectAccount={setSelectedAccountName}
-            />
-          </div>
-
-          <div className="min-w-0 space-y-4">
             <NextActionsPanel
               accountName={selectedWorkspace.row.account}
               items={selectedWorkspace.nextActions}
@@ -490,12 +482,6 @@ export default function Demo() {
               />
             </div>
           </div>
-
-          <AccountsTable
-            rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
-            selectedAccount={selectedWorkspace.row.account}
-            onSelectAccount={setSelectedAccountName}
-          />
         </div>
       );
     }
@@ -505,11 +491,6 @@ export default function Demo() {
         <DecisionLog
           accountName={selectedWorkspace.row.account}
           items={selectedWorkspace.decisionLog}
-        />
-        <AccountsTable
-          rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
-          selectedAccount={selectedWorkspace.row.account}
-          onSelectAccount={setSelectedAccountName}
         />
         <NextActionsPanel
           accountName={selectedWorkspace.row.account}
@@ -544,14 +525,14 @@ export default function Demo() {
               <div className="flex flex-col gap-3 text-nowrap sm:flex-row 2xl:flex-col">
                 <button
                   type="button"
-                  className="border-border bg-secondary text-text hover:bg-foreground hover:text-text-muted inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
+                  className="border-border text-text hover:bg-foreground hover:text-text-muted inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border bg-[oklch(50%_0.3_150)]/10 px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
                 >
                   <Plus className="h-4 w-4" />
                   Add Company
                 </button>
                 <button
                   type="button"
-                  className="border-border bg-foreground text-text-muted hover:bg-secondary hover:text-text inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
+                  className="border-border text-text-muted hover:bg-secondary hover:text-text inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border bg-[oklch(50%_0.3_250)]/10 px-5 py-3 text-sm font-medium transition-colors duration-200 active:scale-[0.98]"
                 >
                   <Download className="h-4 w-4" />
                   Import Data
@@ -559,7 +540,7 @@ export default function Demo() {
               </div>
             </section>
 
-            <div className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4">
               {KPI_ITEMS.map((item, index) => (
                 <DemoKpiCard
                   key={item.label}
@@ -571,7 +552,11 @@ export default function Demo() {
                 />
               ))}
             </div>
-
+            <AccountsTable
+              rows={ACCOUNT_WORKSPACES.map(({ row }) => row)}
+              selectedAccount={selectedWorkspace.row.account}
+              onSelectAccount={setSelectedAccountName}
+            />
             {renderActiveView()}
           </div>
         </div>

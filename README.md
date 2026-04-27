@@ -1,16 +1,16 @@
 # Tactica
 
-Tactica is a revenue workspace prototype. The project currently combines a React marketing site and demo shell with a minimal Django backend for session-based authentication.
+Tactica is a revenue workspace prototype. The project currently combines a React marketing site and demo shell with a minimal FastAPI backend.
 
 ## Current Scope
 
 - Marketing site at `/`
 - Interactive demo workspace at `/demo`
-- Django auth API for register, login, logout, and current session state
+- Minimal FastAPI API entrypoint
 - Dark-only frontend theme
 - Frontend demo data is still static
 
-The backend only covers the first auth layer right now. There is still no real CRM data model, dashboard persistence, or authenticated `/app/*` product shell yet.
+The backend is intentionally small right now. There is still no real CRM data model, dashboard persistence, auth flow, or authenticated `/app/*` product shell yet.
 
 ## Product Direction
 
@@ -32,8 +32,8 @@ The landing page explains the product narrative. The demo route shows the produc
 - React Router
 - Tailwind CSS v4 utilities
 - Lucide React icons
-- Django 5
-- Django sessions
+- FastAPI
+- Uvicorn
 
 ## Routes
 
@@ -42,10 +42,8 @@ The landing page explains the product narrative. The demo route shows the produc
 
 Backend API:
 
-- `/api/auth/register/`
-- `/api/auth/login/`
-- `/api/auth/logout/`
-- `/api/auth/me/`
+- `/` — service status
+- `/health` — health check
 
 ## Getting Started
 
@@ -61,11 +59,13 @@ Backend commands should be run from `backend`.
 
 ```bash
 cd backend
-./venv/bin/python manage.py migrate
-./venv/bin/python manage.py runserver
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload
 ```
 
-The frontend starts with Vite. The backend starts with Django's dev server.
+The frontend starts with Vite. The backend starts with Uvicorn.
 
 ## Available Commands
 
@@ -81,10 +81,7 @@ npm run preview
 Run these from `backend/`:
 
 ```bash
-./venv/bin/python manage.py check
-./venv/bin/python manage.py migrate
-./venv/bin/python manage.py test auth_api
-./venv/bin/python manage.py runserver
+uvicorn main:app --reload
 ```
 
 ## Project Structure
@@ -93,9 +90,7 @@ Run these from `backend/`:
 tactica/
 ├── README.md
 ├── backend/
-│   ├── app/
-│   ├── auth_api/
-│   ├── manage.py
+│   ├── main.py
 │   └── requirements.txt
 └── frontend/
     ├── components/
@@ -121,9 +116,7 @@ tactica/
 - `frontend/src/pages/Demo.tsx` — interactive demo workspace with static dataset
 - `frontend/components/home/*` — landing page sections
 - `frontend/components/demo/*` — dashboard/workspace UI blocks
-- `backend/app/settings.py` — Django project settings and local SQLite fallback
-- `backend/auth_api/views.py` — JSON auth endpoints
-- `backend/auth_api/tests.py` — backend auth flow tests
+- `backend/main.py` — FastAPI application entrypoint
 
 ## Demo Workspace Notes
 
@@ -135,34 +128,19 @@ The demo route is intentionally static for now:
 
 This keeps the product story visible before the real app shell, auth, and data model are implemented.
 
-## Auth API Notes
+## FastAPI Notes
 
-The backend uses Django's built-in user model and session authentication.
-
-Request bodies are JSON:
-
-```json
-{
-  "email": "owner@tactica.app",
-  "password": "SecurePass123!",
-  "name": "Ava Chen"
-}
-```
+The backend is a minimal FastAPI app. It currently exposes a service status route and a health check.
 
 Current endpoints:
 
-- `POST /api/auth/register/` — creates a user and starts a session
-- `POST /api/auth/login/` — authenticates and starts a session
-- `POST /api/auth/logout/` — clears the current session
-- `GET /api/auth/me/` — returns the current authenticated user or `null`
-
-Local backend setup now falls back to SQLite automatically when Postgres env vars are not provided.
+- `GET /` — returns the service name and status
+- `GET /health` — returns `{ "status": "ok" }`
 
 ## Next Logical Steps
 
-- connect frontend forms to the auth API
-- add real `/login` and `/signup` routes
+- add real auth endpoints
 - move demo data into a dedicated mock data module
 - add URL state for demo sections
 - build an authenticated `/app/*` shell
-- connect accounts, pipeline, and tasks to a backend
+- connect accounts, pipeline, and tasks to the FastAPI backend

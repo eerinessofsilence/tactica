@@ -1,7 +1,2 @@
-django
-djangorestframework
-django-cors-headers
-pillow
-psycopg2
-python-dotenv
-gunicorn
+fastapi
+uvicorn[standard]
